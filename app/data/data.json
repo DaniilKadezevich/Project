@@ -1,0 +1,176 @@
+{
+  "categories": {
+  	"cases": {
+  		"Apple": [
+        {
+          "articul": "Bla", 
+          "title": "Bla", 
+          "price": "123", 
+          "colors": "Bla",
+          "counter": "2",
+          "images": [
+            "srs",
+            "src"
+          ],
+          "description": [
+            "Bla",
+            "Bla",
+            "Bla",
+            "Bla"
+          ],
+          "characteristics": {
+            "manufacter": "Bla",
+            "model": "Bla",
+            "material": "Bla",
+            "availability": "Bla"
+          }
+    },
+
+    {
+          "articul": "Bla", 
+          "title": "Bla", 
+          "price": "123", 
+          "colors": "Bla",
+          "counter": "2",
+          "images": [
+            "srs",
+            "src"
+          ],
+          "description": [
+            "Bla",
+            "Bla",
+            "Bla",
+            "Bla"
+          ],
+          "characteristics": {
+            "manufacter": "Bla",
+            "model": "Bla",
+            "material": "Bla",
+            "availability": "Bla"
+          }
+    }, 
+
+    {
+          "articul": "Bla", 
+          "title": "Bla", 
+          "price": "123", 
+          "colors": "Bla",
+          "counter": "2",
+          "images": [
+            "srs",
+            "src"
+          ],
+          "description": [
+            "Bla",
+            "Bla",
+            "Bla",
+            "Bla"
+          ],
+          "characteristics": {
+            "manufacter": "Bla",
+            "model": "Bla",
+            "material": "Bla",
+            "availability": "Bla"
+          }
+    },
+    
+    {
+          "articul": "Bla", 
+          "title": "Bla", 
+          "price": "123", 
+          "colors": "Bla",
+          "counter": "2",
+          "images": [
+            "srs",
+            "src"
+          ],
+          "description": [
+            "Bla",
+            "Bla",
+            "Bla",
+            "Bla"
+          ],
+          "characteristics": {
+            "manufacter": "Bla",
+            "model": "Bla",
+            "material": "Bla",
+            "availability": "Bla"
+          }
+    }
+  ],
+
+  		"Samsung": [
+        {
+          "articul": "Bla", 
+          "title": "Bla", 
+          "price": "123", 
+          "colors": "Bla",
+          "counter": "2",
+          "images": [
+            "srs",
+            "src"
+          ],
+          "description": [
+            "Bla",
+            "Bla",
+            "Bla",
+            "Bla"
+          ],
+          "characteristics": {
+            "manufacter": "Bla",
+            "model": "Bla",
+            "material": "Bla",
+            "availability": "Bla"
+          }
+    }
+      ],
+  		"Huawei": [{}]
+  	},
+  	"glass": {
+  		"Apple": [{}],
+  		"Samsung": [{}],
+  		"Huawei": [{}]
+  	},
+  	"chargers": {
+  		"Apple": [{}],
+  		"Samsung": [{}],
+  		"Huawei": [{}]
+  	}
+  },
+  "carousel": {
+  	"slide1": {"img": "src", "title": "title", "text": "text", "link": "url"},
+  	"slide2": {"img": "src", "title": "title", "text": "text", "link": "url"},
+  	"slide3": {"img": "src", "title": "title", "text": "text", "link": "url"}
+  },
+  "advertising": {
+  	"advert1": {"img": "src", "text": "text", "link": "url"}
+  },
+  "team": {
+  	"Dan": {"img": "img", "position": "position"},
+  	"Sergey": {"img": "img", "position": "position"},
+  	"Marina": {"img": "img", "position": "position"}
+  },
+  "users": {
+  	"login1": {
+  		 "name": "",
+  		 "password": ""
+  	},
+  	"login2": {
+  		 "name": "",
+  		 "password": ""
+  	},
+  	"login3": {
+  		 "name": "",
+  		 "password": ""
+  	},
+  	"login4": {
+  		 "name": "",
+  		 "password": ""
+  	}
+  },
+  "conformity": {
+    "cases": "Чехлы",
+    "glass": "Защитное стекло",
+    "chargers": "Зарядные устройства"
+  }
+}

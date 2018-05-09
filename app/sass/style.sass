@@ -1,0 +1,578 @@
+@import "vars"
+
+body
+  font-family: 'Montserrat', sans-serif
+  height: 100%
+  padding: 0
+  margin: 0
+  font-size: 14px
+  font-weight: 400
+  color: #333
+
+ul
+  list-style-type: none
+  padding: 0
+  margin: 0
+a
+  text-decoration: none
+  color: #333
+  &:hover
+    text-decoration: none
+    color: #333
+h2
+  font-size: 90px
+  line-height: 90px
+  color: #fff
+  margin: 0
+h3
+  margin-bottom: 0
+  font-size: 22px
+  text-transform: uppercase
+  font-weight: 700
+h4
+  font-size: 16px
+  font-weight: 700
+  margin: 0
+  padding: 0
+h5
+  color: #555555
+  font-size: 14px
+  font-weight: 300
+p
+  display: inline-block
+  margin: 0
+button
+  text-align: center
+  border: none
+  display: inline-block
+  cursor: pointer
+  &:focus
+    outline: 0
+    box-shadow: none
+.before-icon-white:before
+  font-family: "linea-software-10"
+  font-size: 13px
+  line-height: 1
+  content: '\G'
+  top: 4px
+  left: 0
+  position: absolute
+.before-icon-black:before
+  font-family: "linea-software-10"
+  font-size: 13px
+  line-height: 1
+  content: '\G'
+  background-color: $accent
+  top: 4px
+  left: 0
+  position: absolute
+input
+  &:focus
+    outline: 0
+    box-shadow: none
+//.slide-btn
+//  border: 2px solid #fff
+//  &:hover
+//    border: 2px solid $accent
+//    background-color: #fff
+.margins-40
+  margin-left: -40px
+  margin-right: -40px
+.margins-20
+  margin-left: -20px
+  margin-right: -20px
+
+.bd-transparent
+  border: 1px solid transparent
+.bd-accent
+  border: 1px solid $accent
+
+.rotate
+  transform: rotate(180deg)
+header
+  .header-top
+    padding-top: 25px
+    padding-bottom: 30px
+    .line-top
+      .phone
+        font-size: 15px
+        font-weight: 300
+        cursor: pointer
+        display: inline-block
+        span
+          transition: all 0.3s ease
+          &:hover
+            opacity: 0.7
+      #header-logo
+        cursor: pointer
+        display: inline-block
+        transition: all 0.3s ease
+        &:hover
+          opacity: 0.7
+        img
+          height: 100px
+      .cart
+        font-size: 16px
+        cursor: pointer
+        display: inline-block
+        transition: all 0.3s ease
+        &:hover
+          opacity: 0.7
+        .fa-circle
+          color: $accent
+        .fa-shopping-basket
+          color: #fff
+
+  .header-bot
+    background-color: rgba(255, 255, 255, 0.8)
+    border-bottom: 1px solid $accent
+    position: relative
+    top: 0
+    width: 100%
+    z-index: 10000
+    .line-bot
+      .header-menu
+        ul#main-menu
+          li
+            padding: 0 10px
+            position: relative
+            margin-right: 20px
+            display: inline-block
+            cursor: pointer
+            &:hover
+              a.main-link
+                opacity: 0.7
+              .sub-menu
+                border: 1px solid $accent
+                border-top: rgba(255, 255, 255, 0.8)
+              .main-icon
+                transform: rotate(180deg)
+            a.main-link
+              display: inline-block
+              height: 100%
+              width: 100%
+              font-size: 13px
+              font-weight: 500
+              line-height: 50px
+              text-transform: uppercase
+              cursor: pointer
+              transition: all 0.3s ease
+            .main-icon
+              font-size: 21px
+              line-height: 1
+              position: absolute
+              left: calc(50% - 10.5px)
+              bottom: -5px
+              transition: all 0.2s
+            .sub-menu
+              //border-top: 7px solid $accent
+              background-color: rgba(255, 255, 255, 0.8)
+              position: absolute
+              left: calc(50% - 90px)
+              ul
+                width: 180px
+                li
+                  color: #333
+                  padding: 0 10px
+                  margin: 10px 0
+                  display: block
+                  border-left: 0px solid $accent
+                  transition: all 0.2s ease
+                  &:hover
+                    border-left: 3px solid $accent
+                    color: $accent
+                  a.secondary-link
+                    display: inline-block
+                    height: 100%
+                    width: 100%
+                    font-size: 13px
+                    font-weight: 300
+                    line-height: 19px
+                    cursor: pointer
+
+
+main
+  width: 100%
+  margin-top: -50px
+  // Main-page
+  #main-page
+    .slick-dotted.slick-slider
+      margin-bottom: 0
+    #main-carousel
+      .slick-slide
+        position: relative
+        .main-slide-content
+          background-color: rgba(0, 0, 0, 0.3)
+          height: calc(100vh - 155px)
+          min-height: 500px
+          max-height: 800px
+          .slide-text-block
+            width: 1000px
+            color: #fff
+            text-align: center
+            position: absolute
+            left: calc(50% - 500px)
+            bottom: calc(40% - 75px)
+            h2
+              margin-bottom: 20px
+            .slide-text
+              margin-bottom: 25px
+              font-size: 40px
+              line-height: 40px
+            .slide-btn
+              padding: 0 40px
+              background-color: $accent
+              font-weight: 300
+              line-height: 46px
+              color: #fff
+              transition: opacity 0.3s ease
+              &:hover
+                opacity: 0.8
+      img
+        width: 100%
+        position: absolute
+        bottom: -150px
+        z-index: -1
+      .slick-dots
+        bottom: 15px
+        li
+          margin: 0
+          button::before
+            color: #fff
+            font-family: "Font Awesome 5 Free"
+            font-size: 10px
+            content: "\f111"
+        .slick-active
+          button::before
+            font-family: "Font Awesome 5 Free"
+            font-size: 10px
+            font-weight: 900
+            content: "\f111"
+
+    #main-popular
+      padding: 40px 0
+      #popular-carousel
+        .slick-prev, .slick-next
+          height: 43px
+          width: inherit
+          &:focus:before
+            opacity: 0.75
+          &:hover:before
+            opacity: 1
+          &:before
+            color: $accent
+            font-family: "linea-arrows-10"
+            font-size: 50px
+        .slick-prev
+          left: -50px
+          &:before
+            content: '\e03f'
+        .slick-next
+          right: -50px
+          &:before
+            content: '\e04b'
+        .popular-carousel-slide
+          padding: 35px 15px 15px
+          position: relative
+          overflow: hidden
+          &:focus
+            box-shadow: none
+            outline: none
+            border: none
+          .slide-content
+            position: relative
+            min-height: 343px
+            padding: 10px 15px 25px
+            cursor: pointer
+            border: 1px solid #ececec
+            transition: all 0.3s ease
+            &:hover
+              box-shadow: 0 0 10px 0 #bdbdbd
+            .slide-img-block
+              width: 200px
+              height: 200px
+              margin-bottom: 15px
+              position: relative
+              img
+                transition: all 0.3s ease
+              &:hover
+                img
+                  opacity: 0.7
+              .slide-btn
+                background-color: $accent
+                font-size: 13px
+                font-weight: 300
+                line-height: 40px
+                padding: 0 25px
+                color: #fff
+                position: absolute
+                top: calc(50%  - 18px)
+                left: calc(50% - 90px)
+                transition: all 0.3s ease
+                &:hover
+                  background-color: #545454
+                  opacity: 0.7
+            .slide-colors-block
+              height: 20px
+              width: 100%
+              margin-top: 10px
+              position: absolute
+              bottom: 10px
+              ul.colors-gallery
+                height: 14px
+                line-height: 1
+                li
+                  display: inline-block
+                  margin-right: 5px
+                  &:last-child
+                    margin-right: 0
+                  .item-color
+                    height: 14px
+                    width: 14px
+                    border-radius: 50%
+                    background-color: #fff
+                    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.44)
+            .slide-text-block
+              width: 200px
+              text-align: center
+            img
+              height: 200px
+
+  //Catalog
+  #catalog-page
+    padding-top: 50px
+    #catalog-top
+      padding: 30px 0
+      .sort-block
+        cursor: pointer
+        font-size: 14px
+        position: relative
+        font-weight: 300
+        transition: all 0.3s ease
+        &:hover
+          border: 1px solid $accent
+        .sort-text-block
+          padding: 9px 25px 9px 10px
+        .sort-icon
+          font-size: 21px
+          position: absolute
+          right: 2px
+          top: 8px
+          transition: all 0.2s ease
+        .sort-menu-container
+          width: 100%
+          outline: 1px solid $accent
+          background-color: #fff
+          position: absolute
+          z-index: 1000
+          transition: all 0.3s ease
+          ul
+            li
+              border-left: 0px solid $accent
+              padding: 0 10px
+              margin: 10px 0
+              transition: all 0.3s ease
+              &:hover
+                border-left: 3px solid $accent
+
+    #catalog-main
+      #catalog-sidebar
+        padding: 0 20px
+        #filters-wrapper
+          h3
+            padding: 10px 0
+          #filters
+            h4
+              font-size: 18px
+              font-weight: 300
+            .filter-block
+              padding: 5px 0
+              //border: 1px solid transparent
+              transition: all 0.3s ease
+              //&:hover
+              //  border: 1px solid $accent
+              .filter-header
+                cursor: pointer
+                position: relative
+                transition: all 0.3s ease
+                .icon-arrows-down
+                  font-size: 21px
+                  line-height: 1
+                  position: absolute
+                  right: 0
+                  top: 0
+              .filter-body
+                margin-top: 10px
+                margin-bottom: 20px
+                text-align: center
+                .filter-btn-ok
+                  background-color: $accent
+                  font-size: 13px
+                  font-weight: 300
+                  line-height: 25px
+                  padding: 0 15px
+                  color: #fff
+                  transition: all 0.3s ease
+                  &:hover
+                    opacity: 0.7
+                .line
+                  width: 10%
+                  height: 1px
+                  background-color: #000
+                  margin-top: 15px
+                .input-range
+                  width: 40%
+                  padding: 5px
+                  text-align: center
+                  border: 1px solid $accent
+                .irs
+                  height: 45px
+                  .irs-bar
+                    height: 6px
+                    top: 25px
+                    background: $accent
+                    border-top: 1px solid $accent
+                    border-bottom: 1px solid $accent
+                  .irs-line
+                    top: 25px
+                    height: 6px
+                    border-radius: 0
+                    border: 1px solid $accent
+                    background-color: #fff
+                    .irs-line-left, .irs-line-mid, .irs-line-right
+                      height: 4px
+                      border-radius: 0
+                      background-color: #fff
+                  .irs-slider
+                    top: 18px
+                    width: 20px
+                    height: 20px
+                    background: #fff
+                    border: 1px solid $accent
+                .filters-list
+                  text-align: left
+                  width: 100%
+                  .filter-checkbox
+                    cursor: pointer
+                    margin: 0
+                    padding-left: 20px
+                    font-size: 14px
+                    font-weight: 300
+                    position: relative
+                    //&:before
+                    //  font-family: "linea-software-10"
+                    //  font-size: 13px
+                    //  line-height: 1
+                    //  content: '\G'
+                    //  top: 4px
+                    //  left: 0
+                    //  position: absolute
+
+
+
+      #catalog-content
+        .row
+          padding-bottom: 40px
+        .catalog-item
+          position: relative
+          min-height: 343px
+          padding: 10px 15px 25px
+          cursor: pointer
+          border: 1px solid #ececec
+          transition: all 0.3s ease
+          &:hover
+            box-shadow: 0 0 10px 0 #bdbdbd
+          .item-img-block
+            width: 200px
+            height: 200px
+            margin-bottom: 20px
+            position: relative
+            img
+              width: 200px
+              transition: all 0.3s ease
+            &:hover
+              img
+                opacity: 0.7
+            .item-btn
+              background-color: $accent
+              font-size: 13px
+              font-weight: 300
+              line-height: 40px
+              padding: 0 25px
+              color: #fff
+              position: absolute
+              top: calc(50%  - 18px)
+              left: calc(50% - 90px)
+              transition: all 0.3s ease
+              &:hover
+                background-color: #545454
+                opacity: 0.7
+          .item-text-block
+            width: 200px
+            text-align: center
+          .item-colors-block
+            height: 20px
+            width: 100%
+            margin-top: 10px
+            position: absolute
+            bottom: 10px
+            ul.colors-gallery
+              height: 14px
+              line-height: 1
+              li
+                display: inline-block
+                margin-right: 5px
+                &:last-child
+                  margin-right: 0
+                .item-color
+                  height: 14px
+                  width: 14px
+                  border-radius: 50%
+                  background-color: #fff
+                  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.44)
+
+footer
+  border-top: 1px solid $accent
+  //background-image: url(../img/static/footer-bg.jpg)
+  //background-repeat: no-repeat
+  //background-position: center top
+  //background-size: cover
+  .footer-top
+    padding: 55px 0 40px 0
+    #footer-logo
+      cursor: pointer
+      transition: opacity 0.3s ease
+      &:hover
+        opacity: 0.7
+      img
+        height: 100px
+    hr
+      width: 100%
+      height: 1px
+      background-color: #fff
+    ul
+      li
+        line-height: 20px
+        margin-bottom: 10px
+        span
+          cursor: pointer
+          margin-left: 5px
+          transition: all 0.3s ease
+          &:hover
+            opacity: 0.7
+            padding-left: 3px
+  .footer-bot
+    border-top: 1px solid #363636
+    padding: 25px 0
+    h6
+      font-weight: 300
+      font-size: 16px
+    ul
+      li
+        cursor: pointer
+        display: inline-block
+        font-size: 24px
+        margin-right: 20px
+        transition: all 0.3s ease
+        &:hover
+          opacity: 0.7
