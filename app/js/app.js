@@ -1,13 +1,6 @@
 'use strict';
 $(document).ready( () => {
-    generateCatalog(items);
-
- // Test
- //
-
-
-// Test
+    generateMainPage(items);
 
     new WOW().init();
-    // generateMainPage();
 });

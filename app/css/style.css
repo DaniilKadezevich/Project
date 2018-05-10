@@ -498,6 +498,107 @@ main {
               border-radius: 50%;
               background-color: #fff;
               box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.44); }
+  main #cart-page {
+    padding: 51px 0; }
+    main #cart-page #cart-top {
+      margin-top: 15px; }
+      main #cart-page #cart-top #cart-sum-amount-block {
+        border: 1px solid #333;
+        padding: 0 15px;
+        height: 100px;
+        background-color: #333;
+        color: #ffffff; }
+      main #cart-page #cart-top #cart-top-text {
+        font-weight: 300;
+        padding: 0 40px;
+        border: 1px solid #333; }
+    main #cart-page #cart-content .cart-item-row {
+      margin: 15px 0;
+      padding: 10px 0;
+      border: 1px solid #ececec; }
+    main #cart-page #cart-content .cart-img-block {
+      transition: all 0.3s;
+      cursor: pointer; }
+      main #cart-page #cart-content .cart-img-block:hover {
+        opacity: 0.7; }
+      main #cart-page #cart-content .cart-img-block img {
+        height: 240px; }
+    main #cart-page #cart-content .cart-title-block .cart-title {
+      font-size: 20px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s; }
+      main #cart-page #cart-content .cart-title-block .cart-title:hover {
+        opacity: 0.7; }
+    main #cart-page #cart-content .cart-title-block .cart-article {
+      font-size: 14px;
+      font-weight: 300;
+      opacity: 0.7; }
+    main #cart-page #cart-content .cart-amount-block .amount-btn {
+      padding: 0;
+      line-height: 30px;
+      width: 30px;
+      transition: all 0.3s; }
+      main #cart-page #cart-content .cart-amount-block .amount-btn:hover {
+        opacity: 0.7; }
+    main #cart-page #cart-content .cart-amount-block .amount-input {
+      padding: 5px;
+      text-align: center;
+      line-height: 20px;
+      width: 40px;
+      border: 1px solid #333; }
+    main #cart-page #cart-content .cart-price-block {
+      text-align: center; }
+      main #cart-page #cart-content .cart-price-block .cart-price {
+        font-size: 20px;
+        font-weight: 600; }
+    main #cart-page #cart-content .cart-delete-block {
+      display: inline-block;
+      line-height: 1;
+      transition: all 0.3s;
+      cursor: pointer; }
+      main #cart-page #cart-content .cart-delete-block:hover {
+        opacity: 0.7; }
+      main #cart-page #cart-content .cart-delete-block .icon {
+        font-size: 30px;
+        height: 30px; }
+    main #cart-page #cart-footer {
+      padding: 35px 0; }
+      main #cart-page #cart-footer #cart-promocode-block #promocode-input {
+        font-weight: 300;
+        border: 1px solid #333;
+        padding: 13px;
+        height: 45px;
+        width: calc(100% - 150px); }
+      main #cart-page #cart-footer #cart-promocode-block #promocode-btn {
+        color: #ffffff;
+        background-color: #333;
+        border: 1px solid #333;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 43px;
+        padding: 0 30px;
+        transition: all 0.3s; }
+        main #cart-page #cart-footer #cart-promocode-block #promocode-btn:hover {
+          opacity: 0.7; }
+      main #cart-page #cart-footer #cart-issue #cart-sum-up-block {
+        text-align: right; }
+        main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-discount, main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-sum {
+          font-size: 16px;
+          font-weight: 300; }
+          main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-discount #cart-discount-span, main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-discount #cart-sum-span, main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-sum #cart-discount-span, main #cart-page #cart-footer #cart-issue #cart-sum-up-block .cart-sum #cart-sum-span {
+            font-size: 18px;
+            font-weight: 500; }
+      main #cart-page #cart-footer #cart-issue #cart-btn-issue-block .btn-issue {
+        color: #ffffff;
+        background-color: #333;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 45px;
+        padding: 0 30px;
+        transition: all 0.3s; }
+        main #cart-page #cart-footer #cart-issue #cart-btn-issue-block .btn-issue:hover {
+          opacity: 0.7; }
 
 footer {
   border-top: 1px solid #333; }
