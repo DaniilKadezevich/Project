@@ -199,16 +199,21 @@ function Catalog() {
     // Catalog Content
     this.generateCatalogContent = (parent, items) => {
         this.clearCatalog(parent);
-        let splitItems = items.slice(0);
-        splitItems = _.chunk(splitItems, 3);
+        if (items.length !== 0) {
+            let splitItems = items.slice(0);
+            splitItems = _.chunk(splitItems, 3);
 
-        for (let items in splitItems) {
-            let row = $('<div>', {class: 'row'});
+            for (let items in splitItems) {
+                let row = $('<div>', {class: 'row'});
 
-            this.generateRowCols(row, splitItems[items]);
+                this.generateRowCols(row, splitItems[items]);
 
-            row.appendTo(parent);
+                row.appendTo(parent);
+            }
+        } else {
+            this.generateMessageNoItems(parent)
         }
+
     };
     this.generateRowCols = (parent, items) => {
         for (let item in items){
@@ -282,7 +287,9 @@ function Catalog() {
         let catalogSidebar = $('<div>', {id: 'catalog-sidebar', class: 'col-3'}),
             catalogFiltersWrapper = $('<div>', {id: 'filters-wrapper'}),
             catalogFiltersTitle = $('<h3>', {text: 'Фильтры'}),
-            catalogFilters = $('<div>', {id: 'filters'});
+            catalogFilters = $('<div>', {id: 'filters'}),
+            offFiltersWrapper = $('<div>', {id: 'off-filters'}),
+            catalogOffFiltersBtn = $('<button>', {class: 'off-filters-btn', text: 'Сбросить фильтры'});
 
         this.generatePriceFilter(catalogFilters,items);
         this.generateManufacturerFilter(catalogFilters, items);
@@ -290,9 +297,13 @@ function Catalog() {
         this.generateModelFilter(catalogFilters, items);
         this.generateMaterialFilter(catalogFilters, items);
 
+        catalogOffFiltersBtn.on('click', this.generateCatalog.bind(this, items));
+
         catalogFiltersTitle.appendTo(catalogFiltersWrapper);
         catalogFilters.appendTo(catalogFiltersWrapper);
         catalogFiltersWrapper.appendTo(catalogSidebar);
+        catalogOffFiltersBtn.appendTo(offFiltersWrapper);
+        offFiltersWrapper.appendTo(catalogSidebar);
         catalogSidebar.appendTo(parent);
 
         this.addEventUseFilters(catalogSidebar.find('.filter-checkbox'), items);
@@ -747,4 +758,9 @@ function Catalog() {
     this.clearCatalog = (element) => {
         element.html('');
     };
+    this.generateMessageNoItems = (parent) => {
+        let $alert = $('<div>', {class: 'alert alert-warning', role: 'alert', text: 'По выбранным параметрам ничего не найдено. Попробуйте выбрать другие значения.'});
+        $alert.appendTo(parent)
+    };
+
 }

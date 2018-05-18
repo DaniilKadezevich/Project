@@ -440,6 +440,19 @@ main {
               font-size: 14px;
               font-weight: 300;
               position: relative; }
+      main #catalog-page #catalog-main #catalog-sidebar #off-filters {
+        padding: 20px;
+        text-align: center; }
+        main #catalog-page #catalog-main #catalog-sidebar #off-filters .off-filters-btn {
+          background-color: #333;
+          font-size: 13px;
+          font-weight: 300;
+          line-height: 25px;
+          padding: 5px 20px;
+          color: #fff;
+          transition: all 0.3s ease; }
+          main #catalog-page #catalog-main #catalog-sidebar #off-filters .off-filters-btn:hover {
+            opacity: 0.7; }
     main #catalog-page #catalog-main #catalog-content .row {
       padding-bottom: 40px; }
     main #catalog-page #catalog-main #catalog-content .catalog-item {
