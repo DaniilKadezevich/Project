@@ -24,7 +24,7 @@
                            "models": ["iPhone 6"]
                        },
                        "counter": "11",
-                       "comments": {},
+                       "comments": [],
                        "date": "04/29/2018"
                    },
 
@@ -49,7 +49,7 @@
                            "models": ["iPhone 5"]
                        },
                        "counter": "3",
-                       "comments": {},
+                       "comments": [],
                        "date": "04/30/2018"
                    },
                    {
@@ -73,7 +73,7 @@
                            "models": ["iPhone 5"]
                        },
                        "counter": "4",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/01/2018"
                    },
                    {
@@ -99,7 +99,7 @@
                            "models": ["iPhone 5"]
                        },
                        "counter": "5",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/02/2018"
                    }
                ],
@@ -128,7 +128,7 @@
                            "models": ["Samsung Galaxy"]
                        },
                        "counter": "6",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/03/2018"
                    },
                ],
@@ -154,7 +154,7 @@
                            "models": ["Huawei LW"]
                        },
                        "counter": "6",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/04/2018"
                    },
                ]
@@ -182,7 +182,7 @@
                            "models": ["iPhone 6"]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments":[],
                        "date": "05/05/2018"
                    },
                    {
@@ -206,7 +206,7 @@
                            "models": ["iPhone 5"]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/06/2018"
                    }
                ],
@@ -232,7 +232,7 @@
                            "models": ["Samsung Galaxy"]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/07/2018"
                    },
                    {
@@ -256,7 +256,7 @@
                            "models": ["Samsung Galaxy"]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/08/2018"
                    },
                    {
@@ -280,7 +280,7 @@
                            "models": ["Samsung Galaxy"]
                        },
                        "counter": "4",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/09/2018"
                    }
 
@@ -307,7 +307,7 @@
                            "models": ["Huawei LW"]
                        },
                        "counter": "4",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/10/2018"
                    },
                    {
@@ -331,7 +331,7 @@
                            "models": ["Huawei LW"]
                        },
                        "counter": "4",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/11/2018"
                    }
                ]
@@ -362,7 +362,7 @@
                            ]
                        },
                        "counter": "6",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/12/2018"
                    },
                    {
@@ -389,7 +389,7 @@
                            ]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/13/2018"
                    }
                ],
@@ -418,7 +418,7 @@
                            ]
                        },
                        "counter": "2",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/14/2018"
                    },
                    {
@@ -441,7 +441,7 @@
                            "models": ["Samsung Galaxy"]
                        },
                        "counter": "10",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/15/2018"
                    }
                ],
@@ -466,7 +466,7 @@
                            "models": ["Huawei LW"]
                        },
                        "counter": "10",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/16/2018"
                    },
                    {
@@ -489,7 +489,7 @@
                            "models": ["Huawei LW"]
                        },
                        "counter": "10",
-                       "comments": {},
+                       "comments": [],
                        "date": "05/17/2018"
                    }
                ]
