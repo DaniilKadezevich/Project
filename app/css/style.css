@@ -81,7 +81,107 @@ input:focus {
 .margins-40 {
   margin-left: -40px;
   margin-right: -40px; }
+/*Marina*/
+.stickBlock {
+  display: flex;
+  flex-direction: column;
+  background-color: #2a2a2ac7;
+  position: fixed;
+  right: 0;
+  bottom: 10%;
+  color: #fff;
+  padding: 20px;
+}
+.stickBtn:focus {
+  box-shadow: none;
+}
+.stickBlock p{
+  margin-bottom: 20px;
+}
+#formRegister input {
+  display: block;
+}
 
+.welcome {
+  background-color: #5a6268;
+}
+
+.stickBtn {
+  outline: none;
+  background-color: #5f9ea0;
+}
+
+.stickBtn:focus {
+  box-shadow: none;
+}
+
+#formRegister input {
+  display: block;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.welcome {
+  background-color: #4e8878bd;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.img {
+  width: 100%;
+}
+.modal-header{
+  border-bottom: 0;
+}
+.modal-body {
+  color: #000;
+}
+#formRegister label{
+  display: flex;
+  justify-content: space-evenly;
+}
+#formRegister input[type="text"],
+#formRegister input[type="password"]{
+  width: 60%;
+  padding: 5px;
+  border: 2px solid #bedaef;
+  border-radius: 5px;
+}
+#formRegister input[type="button"]{
+  background-color: #bedaef;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+#formRegister p{
+  font-weight: bold;
+  margin-top: 20px;
+}
+.modal-fast {
+  max-width: 50%;
+}
+#fastTitle{
+  text-transform: uppercase;
+}
+#fastQuantity{
+  width: 30px;
+  text-align: center;
+}
+#fastInfoNumber{
+  display: flex;
+}
+#photos img{
+  width: 30%;
+}
+
+
+/*Marina^^^*/
 .margins-20 {
   margin-left: -20px;
   margin-right: -20px; }
