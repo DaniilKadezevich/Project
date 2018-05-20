@@ -1,5 +1,5 @@
 'use strict';
-
+let value = 0;
 function Catalog() {
     this.generateCatalog = (items) => {
         let main = $('main');
@@ -235,7 +235,8 @@ function Catalog() {
         let itemImgBlock = $('<div>', {class: 'item-img-block'}),
             itemImg = $('<img>', {src: `${item.images[0]}`}),
             itemBtn = $('<button>', {class: 'item-btn', text: 'Быстрый просмотр'});
-
+        $(itemBtn).attr('type', 'button');
+        $(itemBtn).attr({'data-toggle': 'modal', 'data-target': '#modalWindow'});
         itemBtn.hide();
 
         itemImgBlock.on('mouseenter', () => {
@@ -244,15 +245,61 @@ function Catalog() {
         itemImgBlock.on('mouseleave', () => {
             itemBtn.hide();
         });
-
         itemBtn.on('click', () => {
-            console.log(item.articul);
+            this.showWindow(item);
         });
 
         itemImg.appendTo(itemImgBlock);
         itemBtn.appendTo(itemImgBlock);
         itemImgBlock.appendTo(parent);
     };
+    this.showWindow = (item) => {
+        let self = this;
+        $("#fastPhoto").attr('src', item.images[0]);
+        $("#fastTitle").html(item.title);
+        $('#colorChange').html('');
+        item.colors.forEach((elem)=>{
+            let option = document.createElement("option");
+            $(option).text(elem);
+            $('#colorChange').append(option);
+        });
+        $('#colorChange').on('change', ()=>{
+            item.colors.forEach((color, ind)=>{
+                if(color===$('#colorChange')[0].value) {
+                    $("#fastPhoto").attr('src', item.images[ind]);
+                }
+            });
+        });
+        $("#fastPrice").html(`${item.price} грн.`);
+        let availability = item.characteristics.availability;
+
+        $('#fastPlus').on('click', function(e) {
+            e.stopImmediatePropagation();
+            self.plusFastQuantity (availability);
+
+        });
+        $('#fastMinus').on('click', (e)=>{
+            e.stopImmediatePropagation();
+            self.minusFastQuantity();
+        });
+
+    };
+    this.plusFastQuantity = (availability) =>{
+        ++value;
+        if(value>availability) {
+            value=availability;
+        }
+        $('#fastQuantity').attr('value', value);
+    };
+    this.minusFastQuantity = () => {
+        --value;
+        if(value<0) {
+            value=0;
+        }
+        $('#fastQuantity').attr('value', value);
+    };
+
+
     this.generateItemTextBlock = (parent, item) => {
         let itemTextBlock = $('<div>', {class: 'item-text-block d-flex flex-column justify-content-center align-items-center'}),
             itemTitle = $('<h5>', {text: item.title}),
@@ -261,7 +308,133 @@ function Catalog() {
         itemTitle.appendTo(itemTextBlock);
         itemPrice.appendTo(itemTextBlock);
         itemTextBlock.appendTo(parent);
+        $(itemTitle).on('click', () =>{
+            this.showFullInfo(item);
+        })
     };
+
+    this.showFullInfo = (item) =>{
+        let self = this;
+        $('#catalog-content').html('');
+        $('#fullProduct').removeClass('hidden');
+        $('#catalog-content').append($('#fullProduct'));
+        $("#fullPhoto").attr('src', item.images[0]);
+        item.images.forEach((path)=>{
+            let photo = document.createElement('img');
+            $(photo).attr('src', path);
+            $("#photos").append(photo);
+        });
+
+        $("#fullTitle").html(item.title);
+        $("#fullArticul").html(`Арт. ${item.articul}`);
+        $('#colorFullChange').html('');
+        item.colors.forEach((elem)=>{
+            let option = document.createElement("option");
+            $(option).text(elem);
+            $('#colorFullChange').append(option);
+        });
+        $('#colorFullChange').on('change', ()=>{
+            item.colors.forEach((color, ind)=>{
+                if(color===$('#colorFullChange')[0].value) {
+                    $("#fullPhoto").attr('src', item.images[ind]);
+                }
+            });
+        });
+
+        $("#fullPrice").html(`${item.price} грн.`);
+        $("#fullManufacter").html(`Производитель ${item.characteristics.manufacturers}`);
+        $("#fullMaterial").html(`Материал ${item.characteristics.materials}`);
+        $("#fullAvailability").html(`Наличие ${item.characteristics.availability}`);
+        $("#fullModel").html(`Модель ${item.characteristics.models}`);
+        let availability = item.characteristics.availability;
+        $('#fullPlus').on('click', function(e) {
+            e.stopImmediatePropagation();
+            self. plusQuantity (availability);
+        });
+        $('#fullMinus').on('click', (e)=>{
+            e.stopImmediatePropagation();
+            self.minusQuantity();
+        });
+        $('#commentsLink').on('click', (e) => {
+            e.preventDefault();
+            let comments = item.comments;
+            self.showComments(comments);
+        });
+        $('#elseInfoLink').on('click', (e) =>{
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            let descriptionInfo = item.description;
+            self.showElseInfo(descriptionInfo);
+        });
+    };
+
+    this.plusQuantity = (availability) =>{
+        ++value;
+        if(value>availability) {
+            value=availability;
+        }
+        $('#fullQuantity').attr('value', value);
+    };
+    this.minusQuantity = () => {
+        console.log('ddd');
+        --value;
+        if(value<0) {
+            value=0;
+        }
+        $('#fullQuantity').attr('value', value);
+    };
+    this.showComments = (comments) =>{
+        $('#comments').html('');
+        $('#comments').html(comments);
+        this.createAddCommentBtn(comments);
+        $('#comments').removeClass('hidden');
+        $('#elseInfo').addClass('hidden');
+    };
+
+    this.createAddCommentBtn = (comments) =>{
+        let addComment = $('<input>', {type: 'button', value: 'Add comment', class: 'btn'});
+        $('#comments').append(addComment);
+        $(addComment).on('click', ()=>{
+            this.addComment (comments);
+        });
+
+    };
+
+    this.addComment = (comments)=>{
+        $('#comments').html('');
+        let commentInput = $('<input>', {type: 'text', placeholder: 'Write your message'});
+        let commentBtn = $('<input>', {type: 'button', value: 'Send', class: 'btn'});
+        $('#comments').append(commentInput);
+        $('#comments').append(commentBtn);
+
+        $(commentBtn).on('click', ()=>{
+            this.sendComment(commentInput, comments);
+        });
+    };
+
+    this.sendComment = (commentInput, comments) => {
+        let newCommentItem = {};
+        let newComment =  commentInput[0].value;
+        newCommentItem.author = 'Ssss';
+        newCommentItem.message = newComment;
+
+        comments.push(newCommentItem);
+        let commentsJson = JSON.stringify(comments);
+        localStorage.setItem('newComment', commentsJson);
+        $('#comments').html(comments);
+    };
+    this.showElseInfo = (descriptionInfo) => {
+        $('#elseInfo').html('');
+        descriptionInfo.forEach(function(element) {
+            let descriptiondiv = $('<p>');
+            $(descriptiondiv).html(element);
+            $('#elseInfo').append(descriptiondiv);
+        });
+        $('#comments').addClass('hidden');
+        $('#elseInfo').removeClass('hidden');
+    };
+
+
     this.generateItemColorsBlock = (parent, item) => {
         let itemColorsBlock = $('<div>', {class: 'item-colors-block d-flex align-items-center justify-content-center'}),
             itemColorsGallery = $('<ul>', {class: 'colors-gallery'});
