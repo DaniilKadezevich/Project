@@ -1,5 +1,4 @@
 'use strict';
-let value = 0;
 function Catalog() {
     this.generateCatalog = (items) => {
         let main = $('main');
@@ -255,6 +254,7 @@ function Catalog() {
     };
     this.showWindow = (item) => {
         let self = this;
+        $('#fastQuantity').attr('value', 0);
         $("#fastPhoto").attr('src', item.images[0]);
         $("#fastTitle").html(item.title);
         $('#colorChange').html('');
@@ -271,11 +271,11 @@ function Catalog() {
             });
         });
         $("#fastPrice").html(`${item.price} грн.`);
-        let availability = item.characteristics.availability;
-
+        this.availability = item.characteristics.availability;
+        this.value = 0;
         $('#fastPlus').on('click', function(e) {
             e.stopImmediatePropagation();
-            self.plusFastQuantity (availability);
+            self.plusFastQuantity ();
 
         });
         $('#fastMinus').on('click', (e)=>{
@@ -284,19 +284,19 @@ function Catalog() {
         });
 
     };
-    this.plusFastQuantity = (availability) =>{
-        ++value;
-        if(value>availability) {
-            value=availability;
+    this.plusFastQuantity = () =>{
+        ++this.value;
+        if(this.value>this.availability) {
+            this.value=this.availability;
         }
-        $('#fastQuantity').attr('value', value);
+        $('#fastQuantity').attr('value', this.value);
     };
     this.minusFastQuantity = () => {
-        --value;
-        if(value<0) {
-            value=0;
+        --this.value;
+        if(this.value<0) {
+            this.value=0;
         }
-        $('#fastQuantity').attr('value', value);
+        $('#fastQuantity').attr('value', this.value);
     };
 
 
@@ -315,123 +315,245 @@ function Catalog() {
 
     this.showFullInfo = (item) =>{
         let self = this;
-        $('#catalog-content').html('');
-        $('#fullProduct').removeClass('hidden');
-        $('#catalog-content').append($('#fullProduct'));
-        $("#fullPhoto").attr('src', item.images[0]);
-        item.images.forEach((path)=>{
-            let photo = document.createElement('img');
-            $(photo).attr('src', path);
-            $("#photos").append(photo);
-        });
+        $('main').html('');
+        let fullProduct = document.createElement('div');
+        let fullProductInfo = document.createElement('div');
+        $(fullProductInfo).addClass('fullProductInfo');
+        let fullAdditionalInfo = document.createElement('div');
+        //$('#fullProduct').removeClass('hidden');
+        $(fullProduct).append(fullProductInfo);
+        $(fullProduct).append(fullAdditionalInfo);
+        $('main').append(fullProduct);
+        let fullPhoto = document.createElement('img');
+        $(fullPhoto).attr('src', item.images[0]);
+        $(fullProductInfo).append(fullPhoto);
+        //item.images.forEach((path)=>{
+        //    let photoDiv = document.createElement('div');
+        //    let photo = document.createElement('img');
+        //    $(photo).attr('src', path);
+        //    $(photoDiv).append(photo);
+        //    $(fullProductInfo).append(photoDiv);
+        //
+        //});
+        //item.images.forEach((path)=>{
+        //    let photoSmall = document.createElement('img');
+        //    $(photoSmall).attr('src', path);
+        //    let photoSmallDiv = document.createElement('div');
+        //    let smallPhotos = document.createElement('div');
+        //    $(photoSmallDiv).append(photoSmall);
+        //    $(smallPhotos).append(photoSmallDiv);
+        //    $(fullProductInfo).append(smallPhotos);
+        //});
 
-        $("#fullTitle").html(item.title);
-        $("#fullArticul").html(`Арт. ${item.articul}`);
-        $('#colorFullChange').html('');
+        let fullInfo = document.createElement('div');
+        $(fullProductInfo).append(fullInfo);
+        let fullTitle = document.createElement('h4');
+        $(fullTitle).html(item.title);
+        $(fullInfo).append(fullTitle);
+        let fullArticle = document.createElement('div');
+        $(fullArticle).html(`Арт. ${item.articul}`);
+        $(fullInfo).append(fullArticle);
+
+        //$(colorFullChange).on('change', ()=>{
+        //    item.colors.forEach((color, ind)=>{
+        //        if(color===$(colorFullChange).value) {
+        //            $("#fullPhoto").attr('src', item.images[ind]);
+        //        }
+        //    });
+        //});
+        let fullPrice = document.createElement('div');
+        $(fullInfo).append(fullPrice);
+        if(topInfo[0].lastChild.value==="Выйти") {
+            let price = item.price*0.9;
+            $(fullPrice).html(`${price} грн.`);
+        } else {
+            $(fullPrice).html(`${item.price} грн.`);
+
+        }
+        let fullManufacter = document.createElement('div');
+        $(fullManufacter).html(`Производитель ${item.characteristics.manufacturers}`);
+        let fullMaterial = document.createElement('div');
+        $(fullMaterial).html(`Материал ${item.characteristics.materials}`);
+        let fullAvailability = document.createElement('div');
+        $(fullAvailability).html(`Наличие ${item.characteristics.availability}`);
+        let fullModel = document.createElement('div');
+        $(fullModel).html(`Модель ${item.characteristics.models}`);
+
+
+        $(fullInfo).append(fullManufacter);
+        $(fullInfo).append(fullMaterial);
+        $(fullInfo).append(fullAvailability);
+        $(fullInfo).append(fullModel);
+        let fullColor = document.createElement('div');
+        $(fullInfo).append(fullColor);
+        let colorFullLabel = document.createElement('label');
+        let colorFullChange = document.createElement('select');
+        $(colorFullLabel).html('Цвет');
+        $(colorFullChange).html('');
+        $(colorFullChange).addClass('selectpicker');
+        $(fullColor).append(colorFullLabel);
+        $(fullColor).append(colorFullChange);
+
         item.colors.forEach((elem)=>{
             let option = document.createElement("option");
             $(option).text(elem);
-            $('#colorFullChange').append(option);
+            $(colorFullChange).append(option);
         });
-        $('#colorFullChange').on('change', ()=>{
-            item.colors.forEach((color, ind)=>{
-                if(color===$('#colorFullChange')[0].value) {
-                    $("#fullPhoto").attr('src', item.images[ind]);
-                }
+        this.fullAvailability = item.characteristics.availability;
+        this.value = 0;
+        let fullAmount = document.createElement('div');
+        $(fullAmount).addClass('fullAmount');
+        let fullPlus = document.createElement('input');
+        createBtn(fullPlus, fullAmount, '+');
+        let fullQuantity = document.createElement('input');
+        createInput(fullQuantity, 'text', '', fullQuantity,  fullAmount);
+
+        let fullMinus = document.createElement('input');
+        createBtn(fullMinus, fullAmount, '-');
+        $(fullInfo).append(fullAmount);
+        let fullButtons = document.createElement('div');
+        let fullBasket = document.createElement('input');
+        createBtn(fullBasket, fullButtons, 'В корзину');
+        let fullOrder = document.createElement('input');
+        createBtn(fullOrder, fullButtons, 'В один клик');
+        $(fullInfo).append(fullButtons);
+
+        let links = document.createElement('div');
+        let commentsLink = document.createElement('a');
+        $(commentsLink).html('Отзывы');
+        let elseInfoLink = document.createElement('a');
+        $(elseInfoLink).html('Подробнее');
+        $(links).append(commentsLink);
+        $(links).append(elseInfoLink);
+        $(fullAdditionalInfo).append(links);
+
+        let commentsDiv = document.createElement('div');
+        let allComments = document.createElement('div');
+        let inputComments = document.createElement('div');
+        $(commentsDiv).append(allComments);
+        $(commentsDiv).append(inputComments);
+
+        let elseInfo = document.createElement('div');
+        //$(commentsDiv).addClass('hidden');
+
+        $(fullAdditionalInfo).append(commentsDiv);
+        $(fullAdditionalInfo).append(elseInfo);
+
+        $(fullPlus).on('click', function(e) {
+            e.stopImmediatePropagation();
+            self.plusQuantity (fullQuantity);
+        });
+        $(fullMinus).on('click', (e)=>{
+            e.stopImmediatePropagation();
+            self.minusQuantity(fullQuantity);
+        });
+        $(commentsLink).on('click', (e) => {
+            e.preventDefault();
+            let articul = item.articul;
+            self.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
+        });
+
+
+            //$(elseInfo).html('');
+        let descriptionInfo = item.description;
+            descriptionInfo.forEach(function(element) {
+                let descriptionDiv = $('<p>');
+                $(descriptionDiv).html(element);
+                $(elseInfo).append(descriptionDiv);
             });
-        });
+            $(commentsDiv).addClass('hidden');
+            $(elseInfo).removeClass('hidden');
 
-        $("#fullPrice").html(`${item.price} грн.`);
-        $("#fullManufacter").html(`Производитель ${item.characteristics.manufacturers}`);
-        $("#fullMaterial").html(`Материал ${item.characteristics.materials}`);
-        $("#fullAvailability").html(`Наличие ${item.characteristics.availability}`);
-        $("#fullModel").html(`Модель ${item.characteristics.models}`);
-        let availability = item.characteristics.availability;
-        $('#fullPlus').on('click', function(e) {
-            e.stopImmediatePropagation();
-            self. plusQuantity (availability);
-        });
-        $('#fullMinus').on('click', (e)=>{
-            e.stopImmediatePropagation();
-            self.minusQuantity();
-        });
-        $('#commentsLink').on('click', (e) => {
-            e.preventDefault();
-            let comments = item.comments;
-            self.showComments(comments);
-        });
-        $('#elseInfoLink').on('click', (e) =>{
+        $(elseInfoLink).on('click', (e) =>{
             e.preventDefault();
             e.stopImmediatePropagation();
-            let descriptionInfo = item.description;
-            self.showElseInfo(descriptionInfo);
+            $(commentsDiv).addClass('hidden');
+            $(elseInfo).removeClass('hidden');
+            //self.showElseInfo(descriptionInfo, elseInfo, commentsDiv);
         });
     };
 
-    this.plusQuantity = (availability) =>{
-        ++value;
-        if(value>availability) {
-            value=availability;
+    this.plusQuantity = (fullQuantity) =>{
+        ++this.value;
+        if(this.value>this.fullAvailability) {
+            this.value=this.fullAvailability;
         }
-        $('#fullQuantity').attr('value', value);
+        $(fullQuantity).attr('value', this.value);
     };
-    this.minusQuantity = () => {
-        console.log('ddd');
-        --value;
-        if(value<0) {
-            value=0;
+    this.minusQuantity = (fullQuantity) => {
+        --this.value;
+        if(this.value<0) {
+            this.value=0;
         }
-        $('#fullQuantity').attr('value', value);
+        $(fullQuantity).attr('value', this.value);
     };
-    this.showComments = (comments) =>{
-        $('#comments').html('');
-        $('#comments').html(comments);
-        this.createAddCommentBtn(comments);
-        $('#comments').removeClass('hidden');
-        $('#elseInfo').addClass('hidden');
+    this.showComments = (articul, inputComments, allComments, commentsDiv, elseInfo) =>{
+        $(commentsDiv).html('');
+        $(inputComments).html('');
+        console.log(commentsDiv);
+        let comments;
+        if(localStorage.getItem("newComment")) {
+            comments = JSON.parse(localStorage["newComment"]);
+        } else{
+            comments = [];
+        }
+        this.createAddCommentBtn(comments, articul, inputComments, allComments, commentsDiv);
+        comments.forEach((comment)=>{
+            if(comment.articul===articul) {
+                let commentDiv = document.createElement('div');
+                $(commentDiv).html(`${comment.author}: ${comment.message}`);
+                $(commentsDiv).append(commentDiv);
+            }
+        });
+        $(commentsDiv).removeClass('hidden');
+        $(elseInfo).addClass('hidden');
+        $(elseInfo).addClass('elseInfo');
     };
 
-    this.createAddCommentBtn = (comments) =>{
+    this.createAddCommentBtn = (comments, articul, inputComments, allComments, commentsDiv) =>{
         let addComment = $('<input>', {type: 'button', value: 'Add comment', class: 'btn'});
-        $('#comments').append(addComment);
-        $(addComment).on('click', ()=>{
-            this.addComment (comments);
-        });
+        $(inputComments).append(addComment);
+        $(commentsDiv).append(inputComments);
 
+        $(addComment).on('click', ()=>{
+            this.addComment (comments, inputComments, articul, allComments, commentsDiv);
+        });
     };
 
-    this.addComment = (comments)=>{
-        $('#comments').html('');
+
+    this.addComment = (comments, inputComments, articul, allComments, commentsDiv)=>{
+        $(inputComments).html('');
         let commentInput = $('<input>', {type: 'text', placeholder: 'Write your message'});
         let commentBtn = $('<input>', {type: 'button', value: 'Send', class: 'btn'});
-        $('#comments').append(commentInput);
-        $('#comments').append(commentBtn);
+        $(inputComments).append(commentInput);
+        $(inputComments).append(commentBtn);
+
 
         $(commentBtn).on('click', ()=>{
-            this.sendComment(commentInput, comments);
+            this.sendComment(commentInput, comments, articul, allComments, commentsDiv);
         });
     };
 
-    this.sendComment = (commentInput, comments) => {
+    this.sendComment = (commentInput, comments, articul, allComments, commentsDiv) => {
         let newCommentItem = {};
+
+
         let newComment =  commentInput[0].value;
-        newCommentItem.author = 'Ssss';
+        newCommentItem.author = users[0].name;
         newCommentItem.message = newComment;
+        newCommentItem.articul = articul;
 
         comments.push(newCommentItem);
+
         let commentsJson = JSON.stringify(comments);
         localStorage.setItem('newComment', commentsJson);
-        $('#comments').html(comments);
-    };
-    this.showElseInfo = (descriptionInfo) => {
-        $('#elseInfo').html('');
-        descriptionInfo.forEach(function(element) {
-            let descriptiondiv = $('<p>');
-            $(descriptiondiv).html(element);
-            $('#elseInfo').append(descriptiondiv);
-        });
-        $('#comments').addClass('hidden');
-        $('#elseInfo').removeClass('hidden');
+        let commentDiv = document.createElement('div');
+        $(commentDiv).html(`${newCommentItem.author}: ${newCommentItem.message}`);
+        $(allComments).append(commentDiv);
+        $(commentsDiv).append(allComments);
+        commentInput[0].value = '';
+
+        //$('#comments').html(`${newCommentItem.author}: ${newCommentItem.message}`);
     };
 
 

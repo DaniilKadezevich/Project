@@ -37,7 +37,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col d-flex justify-content-end">
+                    <div class="col d-flex justify-content-end" id="topInfo">
                         <div class="cart d-flex align-items-center">
                             <span class="cart-summ">1500 грн</span>
                             <span class="fa-layers fa-fw fa-3x">
@@ -93,44 +93,47 @@
     </div>
 
 
-    <div id="fullProduct" class="row hidden">
-        <div id="fullProductInfo" class="col-sm-12 d-flex">
-            <div class="d-flex flex-column">
-                <img id="fullPhoto"src="" alt="">
-                <div id="photos"></div>
-            </div>
-            <div id="fullInfo">
-                <div id="fullTitle"></div>
-                <div id="fullArticul"></div>
-                <div id="fullPrice"></div>
-                <div id="fullManufacter"></div>
-                <div id="fullMaterial"></div>
-                <div id="fullAvailability"></div>
-                <div id="fullModel"></div>
-                <div id="fullColor">
-                    <label for="colorFullChange">Цвет</label>
-                    <select class="selectpicker" name="colorChange" id="colorFullChange" ></select>
-                </div>
-                <div id="fullAmount" class="col-sm-6">
-                    <input type="button" class="btn" id="fullMinus" value="-">
-                    <input type="text" id="fullQuantity" value="0"/>
-                    <input type="button" class="btn" id="fullPlus" value="+">
-                </div>
-                <div id="fullButtons">
-                    <input type="button" class="btn" id="fullBasket" value="В корзину">
-                    <input type="button" class="btn" id="fullOrder" value="В один клик">
-                </div>
-            </div>
-        </div>
-        <div id="fullAdditionalInfo" class="col-sm-12">
-            <ul>
-                <li><a href="" id="commentsLink">Отзывы</a></li>
-                <li><a href="" id="elseInfoLink">Подробнее</a></li>
-            </ul>
-            <div id="comments" class="hidden"></div>
-            <div id="elseInfo"></div>
-        </div>
-    </div>
+    <!--<div id="fullProduct" class="row hidden">-->
+        <!--<div id="fullProductInfo" class="col-sm-12 d-flex">-->
+            <!--<div class="d-flex flex-column  slider-single" id="photos">-->
+                <!--&lt;!&ndash;<img id="fullPhoto" src="" alt="">&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div id="smallPhotos" class="slider-nav"></div>-->
+            <!--<div id="fullInfo">-->
+                <!--<div id="fullTitle"></div>-->
+                <!--<div id="fullArticul"></div>-->
+                <!--<div id="fullPrice"></div>-->
+                <!--<div id="fullManufacter"></div>-->
+                <!--<div id="fullMaterial"></div>-->
+                <!--<div id="fullAvailability"></div>-->
+                <!--<div id="fullModel"></div>-->
+                <!--<div id="fullColor">-->
+                    <!--<label for="colorFullChange">Цвет</label>-->
+                    <!--<select class="selectpicker" name="colorChange" id="colorFullChange" ></select>-->
+                <!--</div>-->
+                <!--<div id="fullAmount" class="col-sm-6">-->
+                    <!--<input type="button" class="btn" id="fullMinus" value="-">-->
+                    <!--<input type="text" id="fullQuantity" value="0"/>-->
+                    <!--<input type="button" class="btn" id="fullPlus" value="+">-->
+                <!--</div>-->
+                <!--<div id="fullButtons">-->
+                    <!--<input type="button" class="btn" id="fullBasket" value="В корзину">-->
+                    <!--<input type="button" class="btn" id="fullOrder" value="В один клик">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="fullAdditionalInfo" class="col-sm-12">-->
+            <!--<ul>-->
+                <!--<li><a href="" id="commentsLink">Отзывы</a></li>-->
+                <!--<li><a href="" id="elseInfoLink">Подробнее</a></li>-->
+            <!--</ul>-->
+            <!--<div id="comments" class="hidden">-->
+                <!--<div id="allComments"></div>-->
+                <!--<div id="inputComments"></div>-->
+            <!--</div>-->
+            <!--<div id="elseInfo"></div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -289,8 +292,8 @@
                             <!--</div>-->
                         <!--</div>-->
                     <!--</div>-->
-                    <!--<div  class="col">-->
-                        <!--<div id="catalog-content">-->
+                    <div  class="col">
+                        <div id="catalog-content">
                             <!--<div class="row">-->
                                 <!--<div class="col-4">-->
                                     <!--<div class="catalog-item d-flex flex-column justify-content-center align-items-center">-->
@@ -312,8 +315,8 @@
                                     <!--</div>-->
                                 <!--</div>-->
                             <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                        </div>
+                    </div>
                 <!--</div>-->
             <!--</div>-->
         <!--</section>-->
@@ -522,16 +525,21 @@
         </div>
     </footer>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-    <!-- <script src="../node_modules/lodash/lodash.min.js"></script>
-    <script src="../node_modules/.js/dist/.min.js"></script>
+    <!--&lt;!&ndash; <script src="../node_modules/lodash/lodash.min.js"></script>-->
+    <!--<script src="../node_modules/.js/dist/.min.js"></script>-->
+    <!--<script src="../node_modules/jquery/dist/jquery.min.js"></script>-->
+    <!--<script src="../node_modules/slick-carousel/slick/slick.min.js"></script>-->
+    <!--<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> &ndash;&gt;-->
+
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/libs.min.js"></script>
     <script src="js/data.js"></script>
     <script src="js/registration.js"></script>
     <script src="js/Main_page.js"></script>
     <script src="js/Catalog.js"></script>
+    <script src="js/car.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/static.js"></script>
     <script src="js/app.js"></script>

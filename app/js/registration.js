@@ -13,6 +13,7 @@ let createExitBtn = (user)=>{
 let exitUser = (user)=>{
     topInfo[0].removeChild(topInfo[0].lastChild);
     createEnterBtn();
+    localStorage.removeItem('checkUser');
 };
 let createEnterBtn = ()=>{
     let enterBtn = document.createElement('input');
@@ -44,7 +45,9 @@ let enterUser = ()=>{
 
 
 let createEnterMsg = (enterLogin, enterPassword, errorMsg)=>{
-    if(!enterLogin.value||!enterPassword.value){
+    if(!users[0]) {
+        $(errorMsg).html('Зарегестрируйтесь, пожалуйста');
+    }else if(!enterLogin.value||!enterPassword.value){
         $(errorMsg).html('Заполните поля');
     } else if((users[0].email===enterLogin.value)&&(users[0].password===enterPassword.value)){
         $('#registerForm').modal('toggle');
@@ -54,6 +57,8 @@ let createEnterMsg = (enterLogin, enterPassword, errorMsg)=>{
         setTimeout(()=>$(welcome).hide('fade'), 2000);
         topInfo[0].removeChild(topInfo[0].lastChild);
         createExitBtn();
+        let checkUserJson = 'user enter';
+        localStorage['checkUser'] = checkUserJson;
     } else if((users[0].email===enterLogin.value)&&(users[0].password!=enterPassword.value)) {
         $(errorMsg).html('Не верно указан пароль');
     } else if(users[0].email!=enterLogin.value) {
@@ -127,6 +132,7 @@ let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passw
     if(!error.childNodes.length){
         if(nameValid(name, error) && emailValid(email, error)){
             $(error).html('Регистрация успешна');
+
             let user = {name:name, email:email, password:password};
             users.push(user);
             localForm(users);
@@ -140,6 +146,8 @@ let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passw
             localWelcome(welcome);
             topInfo[0].removeChild(topInfo[0].lastChild);
             createExitBtn();
+            let checkUserJson = 'user enter';
+            localStorage['checkUser'] = checkUserJson;
         }
     }
 };
@@ -191,8 +199,11 @@ $(document).ready(function() {
         createStickBlock();
         topInfo[0].removeChild(topInfo[0].lastChild);
         createEnterBtn();
-    } else{
+    } else if(localStorage.getItem('checkUser')){
         topInfo[0].removeChild(topInfo[0].lastChild);
         createExitBtn();
+    } else{
+        topInfo[0].removeChild(topInfo[0].lastChild);
+        createEnterBtn();
     }
 });
