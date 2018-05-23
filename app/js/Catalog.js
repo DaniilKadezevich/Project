@@ -320,13 +320,17 @@ function Catalog() {
         let fullProductInfo = document.createElement('div');
         $(fullProductInfo).addClass('fullProductInfo');
         let fullAdditionalInfo = document.createElement('div');
+        $(fullAdditionalInfo).addClass('fullAdditionalInfo');
         //$('#fullProduct').removeClass('hidden');
         $(fullProduct).append(fullProductInfo);
         $(fullProduct).append(fullAdditionalInfo);
         $('main').append(fullProduct);
+        let photoDiv = document.createElement('div');
         let fullPhoto = document.createElement('img');
         $(fullPhoto).attr('src', item.images[0]);
-        $(fullProductInfo).append(fullPhoto);
+        $(photoDiv).append(fullPhoto);
+        $(photoDiv).addClass('fullPhotoDiv');
+        $(fullProductInfo).append(photoDiv);
         //item.images.forEach((path)=>{
         //    let photoDiv = document.createElement('div');
         //    let photo = document.createElement('img');
@@ -346,12 +350,15 @@ function Catalog() {
         //});
 
         let fullInfo = document.createElement('div');
+        $(fullInfo).addClass('fullInfo');
         $(fullProductInfo).append(fullInfo);
-        let fullTitle = document.createElement('h4');
+        let fullTitle = document.createElement('h1');
+        $(fullTitle).addClass('fullTitle');
         $(fullTitle).html(item.title);
         $(fullInfo).append(fullTitle);
         let fullArticle = document.createElement('div');
         $(fullArticle).html(`Арт. ${item.articul}`);
+        $(fullArticle).addClass('fullArticle');
         $(fullInfo).append(fullArticle);
 
         //$(colorFullChange).on('change', ()=>{
@@ -362,6 +369,7 @@ function Catalog() {
         //    });
         //});
         let fullPrice = document.createElement('div');
+        $(fullPrice).addClass('fullPrice');
         $(fullInfo).append(fullPrice);
         if(topInfo[0].lastChild.value==="Выйти") {
             let price = item.price*0.9;
@@ -370,22 +378,49 @@ function Catalog() {
             $(fullPrice).html(`${item.price} грн.`);
 
         }
+        let fullInfoBlock = document.createElement('div');
+        $(fullInfoBlock).addClass('fullInfoBlock');
+        let infoLeft = document.createElement('div');
+        let infoRight = document.createElement('div');
+        $(infoLeft).addClass('infoLeft');
+        $(infoRight).addClass('infoRight');
         let fullManufacter = document.createElement('div');
-        $(fullManufacter).html(`Производитель ${item.characteristics.manufacturers}`);
+        $(fullManufacter).html(`Производитель`);
         let fullMaterial = document.createElement('div');
-        $(fullMaterial).html(`Материал ${item.characteristics.materials}`);
+        $(fullMaterial).html(`Материал`);
         let fullAvailability = document.createElement('div');
-        $(fullAvailability).html(`Наличие ${item.characteristics.availability}`);
+        $(fullAvailability).html(`Наличие`);
         let fullModel = document.createElement('div');
-        $(fullModel).html(`Модель ${item.characteristics.models}`);
+        $(fullModel).html(`Модель`);
+
+        let fullManufacterInfo = document.createElement('div');
+        $(fullManufacterInfo).html(item.characteristics.manufacturers);
+        let fullMaterialInfo = document.createElement('div');
+        $(fullMaterialInfo).html(item.characteristics.materials);
+        let fullAvailabilityInfo = document.createElement('div');
+        $(fullAvailabilityInfo).html(item.characteristics.availability);
+        let fullModelInfo = document.createElement('div');
+        $(fullModelInfo).html(item.characteristics.models);
 
 
-        $(fullInfo).append(fullManufacter);
-        $(fullInfo).append(fullMaterial);
-        $(fullInfo).append(fullAvailability);
-        $(fullInfo).append(fullModel);
+        $(infoLeft).append(fullManufacter);
+        $(infoLeft).append(fullMaterial);
+        $(infoLeft).append(fullAvailability);
+        $(infoLeft).append(fullModel);
+
+        $(infoRight).append(fullManufacterInfo);
+        $(infoRight).append(fullMaterialInfo);
+        $(infoRight).append(fullAvailabilityInfo);
+        $(infoRight).append(fullModelInfo);
+        $(fullInfoBlock).append(infoLeft);
+        $(fullInfoBlock).append(infoRight);
+        $(fullInfo).append(fullInfoBlock);
+
+        let fullPickerInfo = document.createElement('div');
+        $(fullPickerInfo).addClass('fullPickerInfo');
         let fullColor = document.createElement('div');
-        $(fullInfo).append(fullColor);
+        $(fullPickerInfo).append(fullColor);
+
         let colorFullLabel = document.createElement('label');
         let colorFullChange = document.createElement('select');
         $(colorFullLabel).html('Цвет');
@@ -403,28 +438,42 @@ function Catalog() {
         this.value = 0;
         let fullAmount = document.createElement('div');
         $(fullAmount).addClass('fullAmount');
-        let fullPlus = document.createElement('input');
-        createBtn(fullPlus, fullAmount, '+');
+        let fullPlus = document.createElement('button');
+        let plusIcon = document.createElement('i');
+        $(plusIcon).addClass('fa');
+        $(plusIcon).addClass('fa-angle-up');
+        $(fullPlus).append(plusIcon);
+        $(fullAmount).append(fullPlus);
         let fullQuantity = document.createElement('input');
         createInput(fullQuantity, 'text', '', fullQuantity,  fullAmount);
+        $(fullQuantity).attr('value', 0);
 
-        let fullMinus = document.createElement('input');
-        createBtn(fullMinus, fullAmount, '-');
-        $(fullInfo).append(fullAmount);
+        let fullMinus = document.createElement('button');
+        let minusIcon = document.createElement('i');
+        $(minusIcon).addClass('fa');
+        $(minusIcon).addClass('fa-angle-down');
+        $(fullMinus).append(minusIcon);
+        $(fullAmount).append(fullMinus);
+        $(fullPickerInfo).append(fullAmount);
         let fullButtons = document.createElement('div');
+        $(fullButtons).addClass('fullButtons');
         let fullBasket = document.createElement('input');
         createBtn(fullBasket, fullButtons, 'В корзину');
         let fullOrder = document.createElement('input');
         createBtn(fullOrder, fullButtons, 'В один клик');
+        $(fullInfo).append(fullPickerInfo);
         $(fullInfo).append(fullButtons);
 
+
         let links = document.createElement('div');
+        $(links).addClass('additionalInfoLinks');
         let commentsLink = document.createElement('a');
         $(commentsLink).html('Отзывы');
         let elseInfoLink = document.createElement('a');
+        $(elseInfoLink).addClass('selectedLink');
         $(elseInfoLink).html('Подробнее');
-        $(links).append(commentsLink);
         $(links).append(elseInfoLink);
+        $(links).append(commentsLink);
         $(fullAdditionalInfo).append(links);
 
         let commentsDiv = document.createElement('div');
@@ -448,6 +497,8 @@ function Catalog() {
             self.minusQuantity(fullQuantity);
         });
         $(commentsLink).on('click', (e) => {
+            $(commentsLink).addClass('selectedLink');
+            $(elseInfoLink).removeClass('selectedLink');
             e.preventDefault();
             let articul = item.articul;
             self.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
@@ -456,15 +507,20 @@ function Catalog() {
 
             //$(elseInfo).html('');
         let descriptionInfo = item.description;
-            descriptionInfo.forEach(function(element) {
+        let newP = document.createElement('p');
+        $(newP).html(descriptionInfo[0]);
+        $(elseInfo).append(newP);
+            descriptionInfo.slice(1).forEach(function(element) {
                 let descriptionDiv = $('<p>');
-                $(descriptionDiv).html(element);
+                $(descriptionDiv).html(`-${element};`);
                 $(elseInfo).append(descriptionDiv);
             });
             $(commentsDiv).addClass('hidden');
             $(elseInfo).removeClass('hidden');
 
         $(elseInfoLink).on('click', (e) =>{
+            $(commentsLink).removeClass('selectedLink');
+            $(elseInfoLink).addClass('selectedLink');
             e.preventDefault();
             e.stopImmediatePropagation();
             $(commentsDiv).addClass('hidden');

@@ -254,31 +254,132 @@ input:focus {
 #fastInfoNumber{
   display: flex;
 }
-#photos img{
-  width: 30%;
+
+.fullProductInfo img{
+  width: 270px;
+}
+.fullPhotoDiv{
+  border: 1px solid #eeeeee;
+  padding: 20px;
+  margin: 0 20px 30px 20px;
+  width: 50%;
+}
+.fullTitle{
+  font-weight: 300;
+  font-size: 25px;
+  margin: 0 0 6px 0;
 }
 .fullProductInfo{
   display: flex;
   padding-top: 100px;
   margin: 0 auto;
-  width: 60%;
+  width: 68%;
 }
-.fullAmount{
+.fullArticle{
+  font-size: 15px;
+  color: #7d7d7d;
+  margin-bottom: 12px;
+}
+.fullPrice{
+  margin-bottom: 25px;
+}
+.fullInfoBlock{
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+.infoLeft{
+  color: #7d7d7d;
+  width: 40%;
+}
+.infoLeft div{
+  padding: 3px 0;
+}
+.infoRight div{
+  padding: 3px 0;
+}
+.fullInfo{
   width: 50%;
 }
-.fullAmount input{
-  width: 35px;
+.fullPickerInfo{
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  margin-bottom: 25px;
+  align-items: center;
 }
-.elseInfo p{
+.fullPickerInfo label{
+  padding-right: 5px;
+}
+.fullAmount{
+  display: flex;
+  flex-direction: column;
+}
+.fullAmount button{
+  background: none;
+  font-size: 24px;
+  height: 25px;
+  display: inherit;
+  margin: 0 auto;
+}
+.fullButtons{
+  width: 70%;
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 20px;
+}
+.fullButtons input{
+  padding: 10px 30px;
+  color: #fff;
+  background-color: #545454;
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: 0;
+}
+.fullButtons input:focus{
+  box-shadow: none;
+}
+.fullAmount input[type="text"]{
+  font-size: 18px;
+  text-align: center;
+  font-weight: 300;
+  width: 74px;
+  height: 34px;
+  padding: 5px;
+}
+.fullAdditionalInfo{
+  margin: 0 auto;
+  width: 68%;
+  margin-top:30px;
+}
+.fullAdditionalInfo p{
   display: block;
+  margin:7px;
 }
-.fullProductInfo a:hover{
+.additionalInfoLinks{
+  border-bottom: 1px solid #bcbcbc;
+  padding: 15px;
+}
+.additionalInfoLinks a{
+  padding: 5px 10px;
+  position: relative;
+}
+.additionalInfoLinks a:hover{
   cursor: pointer;
 }
-.fullProductInfo img{
-  width: 400px;
-}
+.selectedLink::after{
+  position: absolute;
+  content: '';
+  width: 130px;
+  height: 6px;
+  left: -15px;
+  top: 35px;
+  background-color: #545454;
 
+
+}
 /*Marina^^^*/
 .margins-20 {
   margin-left: -20px;
