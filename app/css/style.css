@@ -89,12 +89,14 @@ input:focus {
 .stickBlock {
   display: flex;
   flex-direction: column;
-  background-color: #2a2a2ac7;
+  background-color: #f3eded85;
   position: fixed;
   right: 0;
   bottom: 10%;
-  color: #fff;
+  color: #000;
   padding: 20px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 .stickBtn:focus {
   box-shadow: none;
@@ -105,12 +107,12 @@ input:focus {
 #formRegister input {
   display: block;
 }
-.welcome {
-  background-color: #5a6268;
-}
 .stickBtn {
   outline: none;
-  background-color: #5f9ea0;
+  background-color: #333333;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 0;
 }
 .stickBtn:focus {
   box-shadow: none;
@@ -122,11 +124,12 @@ input:focus {
   display: none;
 }
 .welcome {
-  background-color: #4e8878bd;
+  background-color: #0e0e0ec9;
+  color: #fff;
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 10px;
+  padding: 50px;
   text-align: center;
   font-weight: bold;
 }
@@ -141,19 +144,41 @@ input:focus {
 }
 #formRegister label{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 90%;
+  margin: 0 auto;
+}
+#registerForm .modal-header{
+  padding: 10px;
+}
+#registerForm .modal-content{
+  width: 500px;
+}
+#formRegister label p{
+  font-weight: bold;
+}
+#formRegister label p::after{
+  content: "*";
+  color: red;
 }
 #formRegister input[type="text"],
 #formRegister input[type="password"]{
   width: 60%;
-  padding: 5px;
-  border: 2px solid #bedaef;
   border-radius: 5px;
+  padding: 6px 12px;
+  color: #555555;
+  border: 1px solid #ccc;
 }
 #formRegister input[type="button"]{
-  background-color: #bedaef;
+  background-color: #2e2e2e;
   margin: 0 auto;
   margin-top: 25px;
+  color: #fff;
+  font-size: 14px;
+}
+#formRegister input[type="button"]:focus{
+  box-shadow: none;
 }
 #formRegister p{
   font-weight: bold;
@@ -263,6 +288,10 @@ input:focus {
   padding: 20px;
   margin: 0 20px 30px 20px;
   width: 50%;
+}
+#showPhoto .modal-content{
+  width: 300px;
+  margin: 0 auto
 }
 .fullTitle{
   font-weight: 300;
@@ -381,6 +410,39 @@ input:focus {
 #topInfo button{
   background: none;
   font-size: 30px
+}
+.comments{
+  margin-top: 20px;
+}
+.commentDiv{
+  padding: 15px;
+  width: 70%;
+}
+.commentDiv:not(:last-child){
+  border-bottom: 1px solid #bcbcbc;
+}
+.topCommentInfo{
+  display: flex;
+  justify-content: space-between;
+}
+.topCommentInfo p:first-child{
+  font-weight: bold;
+}
+.commentInput{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.comments textarea{
+  width: 300px;
+}
+.comments input[type="button"]{
+  padding: 10px 30px;
+  color: #fff;
+  background-color: #545454;
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: 0;
 }
 /*Marina^^^*/
 .margins-20 {

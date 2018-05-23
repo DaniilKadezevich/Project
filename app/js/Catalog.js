@@ -330,6 +330,10 @@ function Catalog() {
         $(fullPhoto).attr('src', item.images[0]);
         $(photoDiv).append(fullPhoto);
         $(photoDiv).addClass('fullPhotoDiv');
+        $(photoDiv).on('click', ()=>{
+            $('#showPhoto').modal('toggle');
+            $('#showPhotoBlock').append(fullPhoto);
+        });
         $(fullProductInfo).append(photoDiv);
         //item.images.forEach((path)=>{
         //    let photoDiv = document.createElement('div');
@@ -477,6 +481,7 @@ function Catalog() {
         $(fullAdditionalInfo).append(links);
 
         let commentsDiv = document.createElement('div');
+        $(commentsDiv).addClass('comments');
         let allComments = document.createElement('div');
         let inputComments = document.createElement('div');
         $(commentsDiv).append(allComments);
@@ -546,67 +551,101 @@ function Catalog() {
     this.showComments = (articul, inputComments, allComments, commentsDiv, elseInfo) =>{
         $(commentsDiv).html('');
         $(inputComments).html('');
-        console.log(commentsDiv);
         let comments;
         if(localStorage.getItem("newComment")) {
             comments = JSON.parse(localStorage["newComment"]);
         } else{
             comments = [];
         }
-        this.createAddCommentBtn(comments, articul, inputComments, allComments, commentsDiv);
+        let commentBigBlock = document.createElement('div');
+        $(commentBigBlock).addClass('bigBlockComment');
+
+        this.createAddCommentBtn(comments, articul, inputComments, commentsDiv, commentBigBlock);
         comments.forEach((comment)=>{
             if(comment.articul===articul) {
-                let commentDiv = document.createElement('div');
-                $(commentDiv).html(`${comment.author}: ${comment.message}`);
-                $(commentsDiv).append(commentDiv);
+
+                let commentBlock=document.createElement('div');
+                $(commentBlock).addClass('commentDiv');
+                let topCommentsInfo = document.createElement('div');
+                $(topCommentsInfo).addClass('topCommentInfo');
+                let commentDiv = document.createElement('p');
+                let authorDiv = document.createElement('p');
+                let dateDiv = document.createElement('p');
+                $(commentDiv).addClass('commentDiv');
+                $(commentDiv).html(comment.message);
+                $(authorDiv).html(comment.author);
+                $(dateDiv).html(comment.date);
+                $(topCommentsInfo).append(authorDiv);
+                $(topCommentsInfo).append(dateDiv);
+                $(commentBlock).append(topCommentsInfo);
+                $(commentBlock).append(commentDiv);
+                $(commentBigBlock).append(commentBlock);
             }
         });
         $(commentsDiv).removeClass('hidden');
         $(elseInfo).addClass('hidden');
         $(elseInfo).addClass('elseInfo');
+
     };
 
-    this.createAddCommentBtn = (comments, articul, inputComments, allComments, commentsDiv) =>{
+    this.createAddCommentBtn = (comments, articul, inputComments, commentsDiv, commentBigBlock) =>{
         let addComment = $('<input>', {type: 'button', value: 'Add comment', class: 'btn'});
         $(inputComments).append(addComment);
         $(commentsDiv).append(inputComments);
-
+        $(commentsDiv).append(commentBigBlock);
         $(addComment).on('click', ()=>{
-            this.addComment (comments, inputComments, articul, allComments, commentsDiv);
+            this.addComment (comments, inputComments, articul, commentsDiv, commentBigBlock);
         });
     };
 
 
-    this.addComment = (comments, inputComments, articul, allComments, commentsDiv)=>{
+    this.addComment = (comments, inputComments, articul, commentsDiv, commentBigBlock)=>{
         $(inputComments).html('');
-        let commentInput = $('<input>', {type: 'text', placeholder: 'Write your message'});
+        let commentInput = $('<textarea>', {placeholder: 'Введите сообщение'});
+        $(inputComments).addClass('commentInput');
         let commentBtn = $('<input>', {type: 'button', value: 'Send', class: 'btn'});
+        let commentdate = moment().format('L');
         $(inputComments).append(commentInput);
         $(inputComments).append(commentBtn);
-
-
         $(commentBtn).on('click', ()=>{
-            this.sendComment(commentInput, comments, articul, allComments, commentsDiv);
+            this.sendComment(commentInput, comments, articul, commentsDiv, commentdate, commentBigBlock);
         });
     };
 
-    this.sendComment = (commentInput, comments, articul, allComments, commentsDiv) => {
+    this.sendComment = (commentInput, comments, articul, commentsDiv, commentdate, commentBigBlock) => {
         let newCommentItem = {};
-
-
         let newComment =  commentInput[0].value;
-        newCommentItem.author = users[0].name;
+        if(localStorage.getItem('checkUser')) {
+            newCommentItem.author = users[0].name;
+        } else{
+            newCommentItem.author = 'Гость';
+        }
+
         newCommentItem.message = newComment;
         newCommentItem.articul = articul;
+        newCommentItem.date = commentdate;
 
-        comments.push(newCommentItem);
+        comments.unshift(newCommentItem);
 
+        let commentSmallBlock = document.createElement('div');
         let commentsJson = JSON.stringify(comments);
         localStorage.setItem('newComment', commentsJson);
-        let commentDiv = document.createElement('div');
-        $(commentDiv).html(`${newCommentItem.author}: ${newCommentItem.message}`);
-        $(allComments).append(commentDiv);
-        $(commentsDiv).append(allComments);
+        $(commentSmallBlock).addClass('commentDiv');
+        let topCommentsInfo = document.createElement('div');
+        $(topCommentsInfo).addClass('topCommentInfo');
+
+        let commentDiv = document.createElement('p');
+        let authorDiv = document.createElement('p');
+        let dateDiv = document.createElement('p');
+        $(commentDiv).html(newCommentItem.message);
+        $(authorDiv).html(newCommentItem.author);
+        $(dateDiv).html(commentdate);
+        $(topCommentsInfo).append(authorDiv);
+        $(topCommentsInfo).append(dateDiv);
+        $(commentSmallBlock).append(topCommentsInfo);
+        $(commentSmallBlock).append(commentDiv);
+        $(commentBigBlock).prepend(commentSmallBlock);
+
         commentInput[0].value = '';
 
         //$('#comments').html(`${newCommentItem.author}: ${newCommentItem.message}`);

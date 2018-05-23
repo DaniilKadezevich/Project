@@ -20,7 +20,7 @@ let exitUser = (user)=>{
 let createEnterBtn = ()=>{
     let enterBtn = document.createElement('button');
     let enterIcon = document.createElement('i');
-    createElement(enterIcon, ['fa', 'fa-sign-in-alt'], enterBtn);
+    createElement(enterIcon, ['fa', 'fa-sign-in'], enterBtn);
     createElement(enterBtn,'', topInfo);
     $(enterBtn).attr('data-toggle', 'modal');
     $(enterBtn).attr('data-target', '#registerForm');
@@ -28,15 +28,22 @@ let createEnterBtn = ()=>{
 };
 let enterUser = ()=>{
     $('#formRegister').html('');
-    let loginLabel = $('<label>').text('Логин');
+    let loginLabel = $('<label>');
+    let labelLoginP = document.createElement('p');
+    $(labelLoginP).html('Логин:');
+    $(loginLabel).append(labelLoginP);
+
     $('#formRegister').append(loginLabel);
-    let passwordLabel = $('<label>').text('Пароль');
+    let passwordLabel = $('<label>');
+    let labelPasswordP = document.createElement('p');
+    $(labelPasswordP).html('Пароль:');
+    $(passwordLabel).append(labelPasswordP);
     $('#formRegister').append(passwordLabel);
 
     let enterLogin = document.createElement('input');
     createInput(enterLogin, 'text', 'Your Login', 'enterLogin', $(loginLabel));
     let enterPassword = document.createElement('input');
-    createInput(enterPassword, 'text', 'Your Password', 'enterPassword', $(passwordLabel));
+    createInput(enterPassword, 'password', 'Your Password', 'enterPassword', $(passwordLabel));
     let enterUserBtn = document.createElement('input');
     createBtn(enterUserBtn, $('#formRegister'), 'Вoйти');
     let errorMsg = document.createElement('p');
@@ -77,13 +84,13 @@ if(localStorage.getItem('usersArray')) {
 }
 function showMessage(error, message) {
     $(error).text('');
-    $(error).text(`Введите корректн${message}`);
+    $(error).text(message);
 }
 let emailValid = (formElement, error) => {
     let pattern = /^.+@.+\..+$/i;
     result = pattern.exec(formElement);
     if (!result) {
-        return showMessage(error, 'ую почту');
+        return showMessage(error, 'Введите корректную почту');
     } else {
         return true;
     }
@@ -92,7 +99,14 @@ let nameValid  = (formElement, error) => {
     let pattern = /^[A-Z][a-z]{1,}\s([A-Z][a-z]{1,})+$/;
     let result = pattern.exec(formElement);
     if (!result) {
-        return showMessage(error, 'ое имя');
+        return showMessage(error, 'Введите корректное имя');
+    } else {
+        return true;
+    }
+};
+let passwordValid = (password, secondPassword, error) => {
+    if (password!==secondPassword) {
+        return showMessage(error, 'Пароли должны быть одинаковыми');
     } else {
         return true;
     }
@@ -120,10 +134,11 @@ let localForm = (arr) =>{
     localStorage['usersArray'] = usersJson;
 };
 
-let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passwordFormRegister, error, stickBlock) =>{
+let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passwordFormRegister, error, stickBlock, passwordSecondFormRegister) =>{
     let name = nameFormRegister.value;
     let email = emailFormRegister.value;
     let password = passwordFormRegister.value;
+    let secondPassword = passwordSecondFormRegister.value;
     let registerArr = [name, email, password];
     $(error).html('');
     registerArr.forEach((elem) =>{
@@ -134,7 +149,7 @@ let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passw
         }
     });
     if(!error.childNodes.length){
-        if(nameValid(name, error) && emailValid(email, error)){
+        if(nameValid(name, error) && emailValid(email, error)&&passwordValid(password, secondPassword, error)){
             $(error).html('Регистрация успешна');
 
             let user = {name:name, email:email, password:password};
@@ -160,26 +175,42 @@ let showRegisterForm = (stickBlock) => {
     $(formRegistration).html('');
     let form = document.createElement('form');
     createElement(form, '', formRegistration);
-    let nameLabel = $('<label>').text('Имя');
+    let nameLabel = $('<label>');
+    let labelNameP = document.createElement('p');
+    $(labelNameP).html('Имя:');
+    $(nameLabel).append(labelNameP);
+
     $(form).append(nameLabel);
-    let emailLabel = $('<label>').text('Email');
+    let emailLabel = $('<label>');
     $(form).append(emailLabel);
-    let passwordLabel = $('<label>').text('Пароль');
+    let labelEmailP = document.createElement('p');
+    $(labelEmailP).html('Email:');
+    $(emailLabel).append(labelEmailP);
+    let passwordLabel = $('<label>');
+    let labelPasswordP = document.createElement('p');
+    $(labelPasswordP).html('Пароль:');
+    $(passwordLabel).append(labelPasswordP);
     $(form).append(passwordLabel);
 
-
+    let passwordSecondLabel = $('<label>');
+    let labelSecondPasswordP = document.createElement('p');
+    $(labelSecondPasswordP).html('Повторите пароль:');
+    $(passwordSecondLabel).append(labelSecondPasswordP);
+    $(form).append(passwordSecondLabel);
     let nameFormRegister = document.createElement('input');
     createInput(nameFormRegister, 'text', 'Enter your name', 'name', nameLabel );
     let emailFormRegister = document.createElement('input');
     createInput(emailFormRegister, 'text', 'Enter your email', 'email', emailLabel );
     let passwordFormRegister = document.createElement('input');
     createInput(passwordFormRegister, 'password', 'Enter your password', 'password', passwordLabel );
+    let passwordSecondFormRegister = document.createElement('input');
+    createInput(passwordSecondFormRegister, 'password', 'Enter your password', 'password', passwordSecondLabel );
     let sendBtn = document.createElement('input');
-    createBtn(sendBtn, form, 'Register and enter');
+    createBtn(sendBtn, form, 'Зарегестрироваться и войти');
     let error = document.createElement('p');
     createElement(error, '', formRegistration);
     $(sendBtn).on('click', () => {
-        registerUser(formRegistration, nameFormRegister, emailFormRegister, passwordFormRegister, error, stickBlock);
+        registerUser(formRegistration, nameFormRegister, emailFormRegister, passwordFormRegister, error, stickBlock, passwordSecondFormRegister);
     });
 };
 let createStickBlock = () =>{
