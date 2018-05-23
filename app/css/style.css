@@ -105,29 +105,22 @@ input:focus {
 #formRegister input {
   display: block;
 }
-
 .welcome {
   background-color: #5a6268;
 }
-
 .stickBtn {
   outline: none;
   background-color: #5f9ea0;
 }
-
 .stickBtn:focus {
   box-shadow: none;
 }
-
 #formRegister input {
   display: block;
 }
-
-
 .hidden {
   display: none;
 }
-
 .welcome {
   background-color: #4e8878bd;
   position: absolute;
@@ -137,7 +130,6 @@ input:focus {
   text-align: center;
   font-weight: bold;
 }
-
 .img {
   width: 100%;
 }
@@ -170,12 +162,94 @@ input:focus {
 .modal-fast {
   max-width: 50%;
 }
-#fastTitle{
-  text-transform: uppercase;
+#fastLeft{
+  padding: 15px;
+  margin-bottom: 10px;
+  width: 42%;
+}
+#fastLeft img{
+  width: 327px;
+  height: 327px;
+  padding: 0;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+#fastRight{
+  width: 58%;
+  color: #333333;
+  font-size: 18px;
+}
+#fastRight button{
+  background: #545454;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  padding: 0;
+}
+#fastRight button:focus{
+  box-shadow: none;
 }
 #fastQuantity{
-  width: 30px;
+  height: 30px;
+  width: 50px;
   text-align: center;
+  border: 1px solid #545454;
+  border-radius: 4px;
+}
+#modalWindow .modal-content{
+  max-width: 930px;
+  padding: 30px;
+  margin: 0 auto;
+}
+#modalWindow .modal-header{
+  padding: 0;
+}
+#modalWindow .modal-dialog{
+  max-width: 70%;
+}
+#fastTitle{
+  font-weight: 300;
+  font-size: 25px;
+  margin: 0 0 25px 0;
+  text-transform: uppercase;
+}
+#fastColor{
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+#fastColor select{
+  border: 1px solid #545454;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 35px;
+  padding: 3px 5px;
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+}
+#fastColor select:focus{
+  outline: none;
+}
+#fastInfoNumber{
+  margin-bottom: 20px;
+}
+#fastButtons{
+  display: flex;
+  flex-direction:column;
+  max-width: 40%;
+}
+#fastButtons input{
+  margin-bottom: 20px;
+  background-color: #545454;
+  color: #fff;
+  font-weight: bold;
+  padding: 8.5px 15px;
+  font-size:.8em;
+}
+#fastButtons input:focus{
+  box-shadow: none;
 }
 #fastInfoNumber{
   display: flex;

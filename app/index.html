@@ -146,10 +146,10 @@
                 </div>
                 <div class="modal-body">
                     <div id="fastView" class="row">
-                        <div id="fastLeft" class="col-sm-6 row">
+                        <div id="fastLeft">
                             <img id="fastPhoto" class="col-sm-12">
                         </div>
-                        <div id="fastRight" class="col-sm-6 row">
+                        <div id="fastRight">
                             <div id="fastTitle" class="col-sm-12"></div>
                             <div id="fastColor" class="col-sm-12">
                                 <label for="colorChange">Цвет</label>
@@ -158,9 +158,13 @@
                             <div id="fastInfoNumber" class="col-sm-12 row">
                                 <div id="fastPrice" class="col-sm-6"></div>
                                 <div id="fastAmount" class="col-sm-6">
-                                    <input type="button" class="btn" id="fastMinus" value="-">
-                                    <input type="text" id="fastQuantity" value="0"/>
-                                    <input type="button" class="btn" id="fastPlus" value="+">
+                                    <button class="btn" id="fastMinus">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" id="fastQuantity"/>
+                                    <button class="btn" id="fastPlus" value="+">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </div>
                             <div id="fastButtons" class="col-sm-12">
