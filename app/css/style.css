@@ -377,8 +377,10 @@ input:focus {
   left: -15px;
   top: 35px;
   background-color: #545454;
-
-
+}
+#topInfo button{
+  background: none;
+  font-size: 30px
 }
 /*Marina^^^*/
 .margins-20 {

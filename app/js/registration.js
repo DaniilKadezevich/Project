@@ -6,8 +6,10 @@ let createElement = (element, className, parent)=> {
     $(parent).append(element);
 };
 let createExitBtn = (user)=>{
-    let exitBtn = document.createElement('input');
-    createBtn(exitBtn, topInfo, 'Выйти');
+    let exitBtn = document.createElement('button');
+    let exitIcon = document.createElement('i');
+    createElement(exitIcon, ['fa', 'fa-sign-out-alt'], exitBtn);
+    createElement(exitBtn, '', topInfo);
     $(exitBtn).on('click', exitUser);
 };
 let exitUser = (user)=>{
@@ -16,8 +18,10 @@ let exitUser = (user)=>{
     localStorage.removeItem('checkUser');
 };
 let createEnterBtn = ()=>{
-    let enterBtn = document.createElement('input');
-    createBtn(enterBtn, topInfo, 'Вoйти');
+    let enterBtn = document.createElement('button');
+    let enterIcon = document.createElement('i');
+    createElement(enterIcon, ['fa', 'fa-sign-in-alt'], enterBtn);
+    createElement(enterBtn,'', topInfo);
     $(enterBtn).attr('data-toggle', 'modal');
     $(enterBtn).attr('data-target', '#registerForm');
     $(enterBtn).on('click', enterUser);
@@ -138,7 +142,7 @@ let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passw
             localForm(users);
             $(stickBlock).addClass('hidden');
 
-            setTimeout(()=>{$('#registerForm').modal('toggle');}, 1000);
+            setTimeout(()=>{$('#registerForm').modal('toggle')}, 1000);
             $(welcome).addClass('welcome');
             $(welcome).show('fade');
             $(welcome).html(`Добро пожаловать, ${name}`);
