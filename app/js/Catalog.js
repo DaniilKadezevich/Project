@@ -273,6 +273,7 @@ function Catalog() {
         $("#fastPrice").html(`${item.price} грн.`);
         this.availability = item.characteristics.availability;
         this.value = 0;
+        $("#fastQuantity").prop("disabled", true);
         $('#fastPlus').on('click', function(e) {
             e.stopImmediatePropagation();
             self.plusFastQuantity ();
@@ -451,6 +452,7 @@ function Catalog() {
         let fullQuantity = document.createElement('input');
         createInput(fullQuantity, 'text', '', fullQuantity,  fullAmount);
         $(fullQuantity).attr('value', 0);
+        $(fullQuantity).prop("disabled", true);
 
         let fullMinus = document.createElement('button');
         let minusIcon = document.createElement('i');

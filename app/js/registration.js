@@ -22,11 +22,10 @@ let createEnterBtn = ()=>{
     let enterIcon = document.createElement('i');
     createElement(enterIcon, ['fa', 'fa-sign-in-alt'], enterBtn);
     createElement(enterBtn,'', topInfo);
-    $(enterBtn).attr('data-toggle', 'modal');
-    $(enterBtn).attr('data-target', '#registerForm');
     $(enterBtn).on('click', enterUser);
 };
 let enterUser = ()=>{
+    $('#registerForm').modal('show');
     $('#formRegister').html('');
     let loginLabel = $('<label>');
     let labelLoginP = document.createElement('p');
@@ -222,10 +221,9 @@ let createStickBlock = () =>{
     $(stickText).html('Register now and get 10% sale!');
     let stickBtn = document.createElement('input');
     createBtn(stickBtn, stickBlock, 'Press to register');
-    $(stickBtn).attr('data-toggle', 'modal');
-    $(stickBtn).attr('data-target', '#registerForm');
     createElement(stickBtn, ['btn', 'stickBtn'], '');
     $(stickBtn).on('click', () =>{
+        $('#registerForm').modal('show');
         showRegisterForm(stickBlock);
     });
 };

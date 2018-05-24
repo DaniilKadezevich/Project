@@ -151,13 +151,21 @@ function MainPage() {
         let fullProductInfo = document.createElement('div');
         $(fullProductInfo).addClass('fullProductInfo');
         let fullAdditionalInfo = document.createElement('div');
+        $(fullAdditionalInfo).addClass('fullAdditionalInfo');
         //$('#fullProduct').removeClass('hidden');
         $(fullProduct).append(fullProductInfo);
         $(fullProduct).append(fullAdditionalInfo);
         $('main').append(fullProduct);
+        let photoDiv = document.createElement('div');
         let fullPhoto = document.createElement('img');
         $(fullPhoto).attr('src', item.images[0]);
-        $(fullProductInfo).append(fullPhoto);
+        $(photoDiv).append(fullPhoto);
+        $(photoDiv).addClass('fullPhotoDiv');
+        $(photoDiv).on('click', ()=>{
+            $('#showPhoto').modal('toggle');
+            $('#showPhotoBlock').append(fullPhoto);
+        });
+        $(fullProductInfo).append(photoDiv);
         //item.images.forEach((path)=>{
         //    let photoDiv = document.createElement('div');
         //    let photo = document.createElement('img');
@@ -177,12 +185,15 @@ function MainPage() {
         //});
 
         let fullInfo = document.createElement('div');
+        $(fullInfo).addClass('fullInfo');
         $(fullProductInfo).append(fullInfo);
-        let fullTitle = document.createElement('h4');
+        let fullTitle = document.createElement('h1');
+        $(fullTitle).addClass('fullTitle');
         $(fullTitle).html(item.title);
         $(fullInfo).append(fullTitle);
         let fullArticle = document.createElement('div');
         $(fullArticle).html(`Арт. ${item.articul}`);
+        $(fullArticle).addClass('fullArticle');
         $(fullInfo).append(fullArticle);
 
         //$(colorFullChange).on('change', ()=>{
@@ -193,6 +204,7 @@ function MainPage() {
         //    });
         //});
         let fullPrice = document.createElement('div');
+        $(fullPrice).addClass('fullPrice');
         $(fullInfo).append(fullPrice);
         if(topInfo[0].lastChild.value==="Выйти") {
             let price = item.price*0.9;
@@ -201,22 +213,49 @@ function MainPage() {
             $(fullPrice).html(`${item.price} грн.`);
 
         }
+        let fullInfoBlock = document.createElement('div');
+        $(fullInfoBlock).addClass('fullInfoBlock');
+        let infoLeft = document.createElement('div');
+        let infoRight = document.createElement('div');
+        $(infoLeft).addClass('infoLeft');
+        $(infoRight).addClass('infoRight');
         let fullManufacter = document.createElement('div');
-        $(fullManufacter).html(`Производитель ${item.characteristics.manufacturers}`);
+        $(fullManufacter).html(`Производитель`);
         let fullMaterial = document.createElement('div');
-        $(fullMaterial).html(`Материал ${item.characteristics.materials}`);
+        $(fullMaterial).html(`Материал`);
         let fullAvailability = document.createElement('div');
-        $(fullAvailability).html(`Наличие ${item.characteristics.availability}`);
+        $(fullAvailability).html(`Наличие`);
         let fullModel = document.createElement('div');
-        $(fullModel).html(`Модель ${item.characteristics.models}`);
+        $(fullModel).html(`Модель`);
+
+        let fullManufacterInfo = document.createElement('div');
+        $(fullManufacterInfo).html(item.characteristics.manufacturers);
+        let fullMaterialInfo = document.createElement('div');
+        $(fullMaterialInfo).html(item.characteristics.materials);
+        let fullAvailabilityInfo = document.createElement('div');
+        $(fullAvailabilityInfo).html(item.characteristics.availability);
+        let fullModelInfo = document.createElement('div');
+        $(fullModelInfo).html(item.characteristics.models);
 
 
-        $(fullInfo).append(fullManufacter);
-        $(fullInfo).append(fullMaterial);
-        $(fullInfo).append(fullAvailability);
-        $(fullInfo).append(fullModel);
+        $(infoLeft).append(fullManufacter);
+        $(infoLeft).append(fullMaterial);
+        $(infoLeft).append(fullAvailability);
+        $(infoLeft).append(fullModel);
+
+        $(infoRight).append(fullManufacterInfo);
+        $(infoRight).append(fullMaterialInfo);
+        $(infoRight).append(fullAvailabilityInfo);
+        $(infoRight).append(fullModelInfo);
+        $(fullInfoBlock).append(infoLeft);
+        $(fullInfoBlock).append(infoRight);
+        $(fullInfo).append(fullInfoBlock);
+
+        let fullPickerInfo = document.createElement('div');
+        $(fullPickerInfo).addClass('fullPickerInfo');
         let fullColor = document.createElement('div');
-        $(fullInfo).append(fullColor);
+        $(fullPickerInfo).append(fullColor);
+
         let colorFullLabel = document.createElement('label');
         let colorFullChange = document.createElement('select');
         $(colorFullLabel).html('Цвет');
@@ -234,38 +273,54 @@ function MainPage() {
         this.value = 0;
         let fullAmount = document.createElement('div');
         $(fullAmount).addClass('fullAmount');
-        let fullPlus = document.createElement('input');
-        createBtn(fullPlus, fullAmount, '+');
+        let fullPlus = document.createElement('button');
+        let plusIcon = document.createElement('i');
+        $(plusIcon).addClass('fa');
+        $(plusIcon).addClass('fa-angle-up');
+        $(fullPlus).append(plusIcon);
+        $(fullAmount).append(fullPlus);
         let fullQuantity = document.createElement('input');
         createInput(fullQuantity, 'text', '', fullQuantity,  fullAmount);
+        $(fullQuantity).attr('value', 0);
+        $(fullQuantity).prop("disabled", true);
 
-        let fullMinus = document.createElement('input');
-        createBtn(fullMinus, fullAmount, '-');
-        $(fullInfo).append(fullAmount);
+        let fullMinus = document.createElement('button');
+        let minusIcon = document.createElement('i');
+        $(minusIcon).addClass('fa');
+        $(minusIcon).addClass('fa-angle-down');
+        $(fullMinus).append(minusIcon);
+        $(fullAmount).append(fullMinus);
+        $(fullPickerInfo).append(fullAmount);
         let fullButtons = document.createElement('div');
+        $(fullButtons).addClass('fullButtons');
         let fullBasket = document.createElement('input');
         createBtn(fullBasket, fullButtons, 'В корзину');
         let fullOrder = document.createElement('input');
         createBtn(fullOrder, fullButtons, 'В один клик');
+        $(fullInfo).append(fullPickerInfo);
         $(fullInfo).append(fullButtons);
 
+
         let links = document.createElement('div');
+        $(links).addClass('additionalInfoLinks');
         let commentsLink = document.createElement('a');
         $(commentsLink).html('Отзывы');
         let elseInfoLink = document.createElement('a');
+        $(elseInfoLink).addClass('selectedLink');
         $(elseInfoLink).html('Подробнее');
-        $(links).append(commentsLink);
         $(links).append(elseInfoLink);
+        $(links).append(commentsLink);
         $(fullAdditionalInfo).append(links);
 
         let commentsDiv = document.createElement('div');
+        $(commentsDiv).addClass('comments');
         let allComments = document.createElement('div');
         let inputComments = document.createElement('div');
         $(commentsDiv).append(allComments);
         $(commentsDiv).append(inputComments);
 
         let elseInfo = document.createElement('div');
-        $(commentsDiv).addClass('hidden');
+        //$(commentsDiv).addClass('hidden');
 
         $(fullAdditionalInfo).append(commentsDiv);
         $(fullAdditionalInfo).append(elseInfo);
@@ -279,15 +334,35 @@ function MainPage() {
             self.minusQuantity(fullQuantity);
         });
         $(commentsLink).on('click', (e) => {
+            $(commentsLink).addClass('selectedLink');
+            $(elseInfoLink).removeClass('selectedLink');
             e.preventDefault();
             let articul = item.articul;
             self.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
         });
+
+
+        //$(elseInfo).html('');
+        let descriptionInfo = item.description;
+        let newP = document.createElement('p');
+        $(newP).html(descriptionInfo[0]);
+        $(elseInfo).append(newP);
+        descriptionInfo.slice(1).forEach(function(element) {
+            let descriptionDiv = $('<p>');
+            $(descriptionDiv).html(`-${element};`);
+            $(elseInfo).append(descriptionDiv);
+        });
+        $(commentsDiv).addClass('hidden');
+        $(elseInfo).removeClass('hidden');
+
         $(elseInfoLink).on('click', (e) =>{
+            $(commentsLink).removeClass('selectedLink');
+            $(elseInfoLink).addClass('selectedLink');
             e.preventDefault();
             e.stopImmediatePropagation();
-            let descriptionInfo = item.description;
-            self.showElseInfo(descriptionInfo, elseInfo, commentsDiv);
+            $(commentsDiv).addClass('hidden');
+            $(elseInfo).removeClass('hidden');
+            //self.showElseInfo(descriptionInfo, elseInfo, commentsDiv);
         });
     };
     this.plusQuantity = (fullQuantity) =>{
@@ -305,66 +380,103 @@ function MainPage() {
         $(fullQuantity).attr('value', this.value);
     };
     this.showComments = (articul, inputComments, allComments, commentsDiv, elseInfo) =>{
-        //$('#comments').html('');
+        $(commentsDiv).html('');
+        $(inputComments).html('');
         let comments;
         if(localStorage.getItem("newComment")) {
             comments = JSON.parse(localStorage["newComment"]);
         } else{
             comments = [];
         }
-        this.createAddCommentBtn(comments, articul, inputComments, allComments);
+        let commentBigBlock = document.createElement('div');
+        $(commentBigBlock).addClass('bigBlockComment');
+
+        this.createAddCommentBtn(comments, articul, inputComments, commentsDiv, commentBigBlock);
         comments.forEach((comment)=>{
             if(comment.articul===articul) {
-                let commentDiv = document.createElement('div');
-                $(commentDiv).html(`${comment.author}: ${comment.message}`);
-                $(allComments).append(commentDiv);
+
+                let commentBlock=document.createElement('div');
+                $(commentBlock).addClass('commentDiv');
+                let topCommentsInfo = document.createElement('div');
+                $(topCommentsInfo).addClass('topCommentInfo');
+                let commentDiv = document.createElement('p');
+                let authorDiv = document.createElement('p');
+                let dateDiv = document.createElement('p');
+                $(commentDiv).addClass('commentDiv');
+                $(commentDiv).html(comment.message);
+                $(authorDiv).html(comment.author);
+                $(dateDiv).html(comment.date);
+                $(topCommentsInfo).append(authorDiv);
+                $(topCommentsInfo).append(dateDiv);
+                $(commentBlock).append(topCommentsInfo);
+                $(commentBlock).append(commentDiv);
+                $(commentBigBlock).append(commentBlock);
             }
         });
-
         $(commentsDiv).removeClass('hidden');
         $(elseInfo).addClass('hidden');
         $(elseInfo).addClass('elseInfo');
+
     };
 
-    this.createAddCommentBtn = (comments, articul, inputComments, allComments) =>{
+    this.createAddCommentBtn = (comments, articul, inputComments, commentsDiv, commentBigBlock) =>{
         let addComment = $('<input>', {type: 'button', value: 'Add comment', class: 'btn'});
         $(inputComments).append(addComment);
-
+        $(commentsDiv).append(inputComments);
+        $(commentsDiv).append(commentBigBlock);
         $(addComment).on('click', ()=>{
-            this.addComment (comments, inputComments, articul, allComments);
+            this.addComment (comments, inputComments, articul, commentsDiv, commentBigBlock);
         });
     };
 
 
-    this.addComment = (comments, inputComments, articul, allComments)=>{
+    this.addComment = (comments, inputComments, articul, commentsDiv, commentBigBlock)=>{
         $(inputComments).html('');
-        let commentInput = $('<input>', {type: 'text', placeholder: 'Write your message'});
+        let commentInput = $('<textarea>', {placeholder: 'Введите сообщение'});
+        $(inputComments).addClass('commentInput');
         let commentBtn = $('<input>', {type: 'button', value: 'Send', class: 'btn'});
+        let commentdate = moment().format('L');
         $(inputComments).append(commentInput);
         $(inputComments).append(commentBtn);
-
-
         $(commentBtn).on('click', ()=>{
-            this.sendComment(commentInput, comments, articul, allComments);
+            this.sendComment(commentInput, comments, articul, commentsDiv, commentdate, commentBigBlock);
         });
     };
 
-    this.sendComment = (commentInput, comments, articul, allComments) => {
+    this.sendComment = (commentInput, comments, articul, commentsDiv, commentdate, commentBigBlock) => {
         let newCommentItem = {};
-
-
         let newComment =  commentInput[0].value;
-        newCommentItem.author = users[0].name;
+        if(localStorage.getItem('checkUser')) {
+            newCommentItem.author = users[0].name;
+        } else{
+            newCommentItem.author = 'Гость';
+        }
+
         newCommentItem.message = newComment;
         newCommentItem.articul = articul;
+        newCommentItem.date = commentdate;
 
-        comments.push(newCommentItem);
+        comments.unshift(newCommentItem);
 
+        let commentSmallBlock = document.createElement('div');
         let commentsJson = JSON.stringify(comments);
         localStorage.setItem('newComment', commentsJson);
-        let commentDiv = document.createElement('div');
-        $(commentDiv).html(`${newCommentItem.author}: ${newCommentItem.message}`);
-        $(allComments).prepend(commentDiv);
+        $(commentSmallBlock).addClass('commentDiv');
+        let topCommentsInfo = document.createElement('div');
+        $(topCommentsInfo).addClass('topCommentInfo');
+
+        let commentDiv = document.createElement('p');
+        let authorDiv = document.createElement('p');
+        let dateDiv = document.createElement('p');
+        $(commentDiv).html(newCommentItem.message);
+        $(authorDiv).html(newCommentItem.author);
+        $(dateDiv).html(commentdate);
+        $(topCommentsInfo).append(authorDiv);
+        $(topCommentsInfo).append(dateDiv);
+        $(commentSmallBlock).append(topCommentsInfo);
+        $(commentSmallBlock).append(commentDiv);
+        $(commentBigBlock).prepend(commentSmallBlock);
+
         commentInput[0].value = '';
 
         //$('#comments').html(`${newCommentItem.author}: ${newCommentItem.message}`);
@@ -383,6 +495,7 @@ function MainPage() {
 
     this.showWindow = (item) => {
         let self = this;
+        $('#fastQuantity').attr('value', 0);
         $("#fastPhoto").attr('src', item.images[0]);
         $("#fastTitle").html(item.title);
         $('#colorChange').html('');
@@ -399,11 +512,13 @@ function MainPage() {
             });
         });
         $("#fastPrice").html(`${item.price} грн.`);
-        let availability = item.characteristics.availability;
-
+        this.availability = item.characteristics.availability;
+        console.log(item);
+        this.value = 0;
+        $("#fastQuantity").prop("disabled", true);
         $('#fastPlus').on('click', function(e) {
             e.stopImmediatePropagation();
-            self.plusFastQuantity (availability);
+            self.plusFastQuantity ();
 
         });
         $('#fastMinus').on('click', (e)=>{
@@ -412,19 +527,19 @@ function MainPage() {
         });
 
     };
-    this.plusFastQuantity = (availability) =>{
-        ++value;
-        if(value>availability) {
-            value=availability;
+    this.plusFastQuantity = () =>{
+        ++this.value;
+        if(this.value>this.availability) {
+            this.value=this.availability;
         }
-        $('#fastQuantity').attr('value', value);
+        $('#fastQuantity').attr('value', this.value);
     };
     this.minusFastQuantity = () => {
-        --value;
-        if(value<0) {
-            value=0;
+        --this.value;
+        if(this.value<0) {
+            this.value=0;
         }
-        $('#fastQuantity').attr('value', value);
+        $('#fastQuantity').attr('value', this.value);
     };
 
 

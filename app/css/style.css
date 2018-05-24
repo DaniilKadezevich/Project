@@ -242,6 +242,7 @@ input:focus {
   text-align: center;
   border: 1px solid #545454;
   border-radius: 4px;
+  background-color: #fff;
 }
 #modalWindow .modal-content{
   max-width: 930px;
@@ -265,6 +266,9 @@ input:focus {
   margin-bottom: 20px;
 }
 #fastColor select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance:none;
   border: 1px solid #545454;
   border-radius: 4px;
   cursor: pointer;
@@ -407,6 +411,7 @@ input:focus {
   width: 74px;
   height: 34px;
   padding: 5px;
+  background-color: #fff;
 }
 .fullAdditionalInfo{
   margin: 0 auto;
