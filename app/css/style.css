@@ -109,11 +109,17 @@ input:focus {
 }
 .stickBtn {
   outline: none;
+  opacity: 1;
   background-color: #333333;
   color: #fff;
   font-size: 14px;
   border-radius: 0;
+  transition: all 0.3s ease;
 }
+.stickBtn:hover{
+  opacity: 0.8;
+}
+
 .stickBtn:focus {
   box-shadow: none;
 }
@@ -173,12 +179,17 @@ input:focus {
 #formRegister input[type="button"]{
   background-color: #2e2e2e;
   margin: 0 auto;
+  opacity: 1;
   margin-top: 25px;
   color: #fff;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 #formRegister input[type="button"]:focus{
   box-shadow: none;
+}
+#formRegister input[type="button"]:hover{
+  opacity: 0.8;
 }
 #formRegister p{
   font-weight: bold;
@@ -206,7 +217,6 @@ input:focus {
   font-size: 18px;
 }
 #fastRight button{
-  background: #545454;
   color: #fff;
   height: 30px;
   width: 30px;
@@ -215,6 +225,16 @@ input:focus {
 }
 #fastRight button:focus{
   box-shadow: none;
+}
+#fastRight button,
+#fastRight input[type="button"]{
+  background-color: #333333;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+#fastRight button:hover,
+#fastRight input[type="button"]:hover{
+  opacity: 0.8;
 }
 #fastQuantity{
   height: 30px;
@@ -267,7 +287,6 @@ input:focus {
 }
 #fastButtons input{
   margin-bottom: 20px;
-  background-color: #545454;
   color: #fff;
   font-weight: bold;
   padding: 8.5px 15px;
@@ -289,9 +308,10 @@ input:focus {
   margin: 0 20px 30px 20px;
   width: 50%;
 }
-#showPhoto .modal-content{
-  width: 300px;
-  margin: 0 auto
+
+#showPhoto .modal-content::before{
+  content: "+";
+  
 }
 .fullTitle{
   font-weight: 300;
@@ -352,6 +372,11 @@ input:focus {
   height: 25px;
   display: inherit;
   margin: 0 auto;
+  opacity:1;
+  transition: opacity 0.3s ease;
+}
+.fullAmount button:hover{
+  opacity: 0.8;
 }
 .fullButtons{
   width: 70%;
@@ -362,10 +387,15 @@ input:focus {
 .fullButtons input{
   padding: 10px 30px;
   color: #fff;
-  background-color: #545454;
+  opacity:1;
+  transition: opacity 0.3s ease;
+  background-color: #333333;
   font-size: 14px;
   font-weight: 300;
   border-radius: 0;
+}
+.fullButtons input:hover{
+  opacity: 0.8;
 }
 .fullButtons input:focus{
   box-shadow: none;
@@ -405,11 +435,21 @@ input:focus {
   height: 6px;
   left: -15px;
   top: 35px;
-  background-color: #545454;
+  background-color: #333333;
+  opacity:1;
+  transition: opacity 0.3s ease;
+}
+.selectedLink:hover::after{
+  opacity: 0.8;
 }
 #topInfo button{
   background: none;
-  font-size: 30px
+  font-size: 30px;
+  opacity: 1;
+  transition: all 0.3s ease
+}
+#topInfo button:hover{
+  opacity: 0.8;
 }
 .comments{
   margin-top: 20px;
@@ -443,6 +483,14 @@ input:focus {
   font-size: 14px;
   font-weight: 300;
   border-radius: 0;
+  opacity:1;
+  transition: opacity 0.3s ease;
+}
+.comments input[type="button"]:hover{
+  opacity: 0.8;
+}
+.comments input[type="button"]:focus{
+  box-shadow: none;
 }
 /*Marina^^^*/
 .margins-20 {

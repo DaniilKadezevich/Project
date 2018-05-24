@@ -20,7 +20,7 @@ let exitUser = (user)=>{
 let createEnterBtn = ()=>{
     let enterBtn = document.createElement('button');
     let enterIcon = document.createElement('i');
-    createElement(enterIcon, ['fa', 'fa-sign-in'], enterBtn);
+    createElement(enterIcon, ['fa', 'fa-sign-in-alt'], enterBtn);
     createElement(enterBtn,'', topInfo);
     $(enterBtn).attr('data-toggle', 'modal');
     $(enterBtn).attr('data-target', '#registerForm');
