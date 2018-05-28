@@ -326,33 +326,53 @@ function Catalog() {
         $(fullProduct).append(fullProductInfo);
         $(fullProduct).append(fullAdditionalInfo);
         $('main').append(fullProduct);
+
         let photoDiv = document.createElement('div');
-        let fullPhoto = document.createElement('img');
-        $(fullPhoto).attr('src', item.images[0]);
-        $(photoDiv).append(fullPhoto);
+        let sliderFor = document.createElement('div');
+        let sliderNav = document.createElement('div');
+        $(sliderFor).addClass('slider-for');
+        $(sliderNav).addClass('slider-nav');
+
+
+        item.images.forEach((path)=>{
+            let fullPhoto = document.createElement('img');
+            $(fullPhoto).attr('src', path);
+            $(sliderFor).append(fullPhoto);
+
+            let fullSmallPhoto = document.createElement('img');
+            $(fullSmallPhoto).attr('src', path);
+            $(sliderNav).append(fullSmallPhoto);
+        });
+        $(sliderFor).slick({
+            autoplay: false,
+            dots: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
+        $(sliderNav).slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            centerMode: true,
+            focusOnSelect: true
+        });
+        $(photoDiv).append(sliderFor);
+        $(photoDiv).append(sliderNav);
+
+
+        //let fullPhoto = document.createElement('img');
+        //$(fullPhoto).attr('src', item.images[0]);
+        //$(photoDiv).append(fullPhoto);
         $(photoDiv).addClass('fullPhotoDiv');
         $(photoDiv).on('click', ()=>{
-            $('#showPhoto').modal('toggle');
-            $('#showPhotoBlock').append(fullPhoto);
+            //$('#showPhoto').modal('toggle');
+            //$('#showPhotoBlock').append(fullPhoto);
         });
         $(fullProductInfo).append(photoDiv);
-        //item.images.forEach((path)=>{
-        //    let photoDiv = document.createElement('div');
-        //    let photo = document.createElement('img');
-        //    $(photo).attr('src', path);
-        //    $(photoDiv).append(photo);
-        //    $(fullProductInfo).append(photoDiv);
-        //
-        //});
-        //item.images.forEach((path)=>{
-        //    let photoSmall = document.createElement('img');
-        //    $(photoSmall).attr('src', path);
-        //    let photoSmallDiv = document.createElement('div');
-        //    let smallPhotos = document.createElement('div');
-        //    $(photoSmallDiv).append(photoSmall);
-        //    $(smallPhotos).append(photoSmallDiv);
-        //    $(fullProductInfo).append(smallPhotos);
-        //});
 
         let fullInfo = document.createElement('div');
         $(fullInfo).addClass('fullInfo');
@@ -366,13 +386,7 @@ function Catalog() {
         $(fullArticle).addClass('fullArticle');
         $(fullInfo).append(fullArticle);
 
-        //$(colorFullChange).on('change', ()=>{
-        //    item.colors.forEach((color, ind)=>{
-        //        if(color===$(colorFullChange).value) {
-        //            $("#fullPhoto").attr('src', item.images[ind]);
-        //        }
-        //    });
-        //});
+
         let fullPrice = document.createElement('div');
         $(fullPrice).addClass('fullPrice');
         $(fullInfo).append(fullPrice);
@@ -439,14 +453,22 @@ function Catalog() {
             $(option).text(elem);
             $(colorFullChange).append(option);
         });
+        $(colorFullChange).on('change', ()=>{
+            item.colors.forEach((color, ind)=>{
+                console.log(colorFullChange.value);
+                if(color===colorFullChange.value) {
+                    $(".slick-current").attr('src', item.images[ind]);
+                }
+            });
+        });
         this.fullAvailability = item.characteristics.availability;
         this.value = 0;
         let fullAmount = document.createElement('div');
         $(fullAmount).addClass('fullAmount');
         let fullPlus = document.createElement('button');
         let plusIcon = document.createElement('i');
-        $(plusIcon).addClass('fa');
-        $(plusIcon).addClass('fa-angle-up');
+        //$(plusIcon).addClass('fa');
+        //$(plusIcon).addClass('fa-angle-up');
         $(fullPlus).append(plusIcon);
         $(fullAmount).append(fullPlus);
         let fullQuantity = document.createElement('input');
@@ -456,8 +478,8 @@ function Catalog() {
 
         let fullMinus = document.createElement('button');
         let minusIcon = document.createElement('i');
-        $(minusIcon).addClass('fa');
-        $(minusIcon).addClass('fa-angle-down');
+        //$(minusIcon).addClass('fa');
+        //$(minusIcon).addClass('fa-angle-down');
         $(fullMinus).append(minusIcon);
         $(fullAmount).append(fullMinus);
         $(fullPickerInfo).append(fullAmount);

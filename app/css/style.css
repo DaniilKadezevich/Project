@@ -312,7 +312,31 @@ input:focus {
   margin: 0 20px 30px 20px;
   width: 50%;
 }
-
+.fullPhotoDiv .slick-prev::before,
+.fullPhotoDiv .slick-next::before{
+  color: #333;
+  font-family: "linea-arrows-10";
+  font-size: 20px;
+  height: 43px;
+  width: inherit;
+  border: 1px solid #eeeeee;
+  border-radius: 50%;
+  padding: 10px;
+  font-weight: bold;
+}
+.fullPhotoDiv .slick-prev::before{
+  content: '\e03f';
+}
+.fullPhotoDiv .slick-next::before{
+  content: '\e04b';
+}
+.fullPhotoDiv .slick-next{
+  right: 7%;
+}
+.fullPhotoDiv .slick-prev{
+  left: 2%;
+  z-index: 2;
+}
 #showPhoto .modal-content::before{
   content: "+";
   
@@ -379,6 +403,14 @@ input:focus {
   opacity:1;
   transition: opacity 0.3s ease;
 }
+.fullAmount button:first-child i::before{
+   font-family: "linea-arrows-10";
+   content: "\f106";
+ }
+.fullAmount button:last-child i::before{
+  font-family: "linea-arrows-10";
+  content: "\f107";
+}
 .fullAmount button:hover{
   opacity: 0.8;
 }
@@ -406,6 +438,7 @@ input:focus {
 }
 .fullAmount input[type="text"]{
   font-size: 18px;
+  border: 1px solid #d3d3d3;
   text-align: center;
   font-weight: 300;
   width: 74px;
