@@ -417,11 +417,17 @@ input:focus {
 }
 .fullAmount button:first-child i::before{
    font-family: "linea-arrows-10";
-   content: "\f106";
+   content: "\e083";
+
  }
+.fullAmount button i{
+  font-style: inherit;
+  top: -6px;
+  position: relative;
+}
 .fullAmount button:last-child i::before{
   font-family: "linea-arrows-10";
-  content: "\f107";
+  content: "\e019";
 }
 .fullAmount button:hover{
   opacity: 0.8;
