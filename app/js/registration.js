@@ -216,6 +216,8 @@ let createStickBlock = () =>{
     let stickBlock = document.createElement('div');
     createElement(stickBlock, 'stickBlock', 'body');
     $(stickBlock).addClass('stickBlock');
+    let stickCloseBtn = document.createElement('button');
+    createElement(stickCloseBtn, 'stickCloseBtn', stickBlock);
     let stickText = document.createElement('p');
     createElement(stickText, 'stickText', stickBlock);
     $(stickText).html('Register now and get 10% sale!');
@@ -226,6 +228,9 @@ let createStickBlock = () =>{
         $('#registerForm').modal('show');
         showRegisterForm(stickBlock);
     });
+    $(stickCloseBtn).on('click',()=>{
+        $(stickBlock).animate({right: '-350px'}, 'slow');
+    })
 };
 $(document).ready(function() {
     if(!localStorage.getItem('welcome')) {
