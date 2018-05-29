@@ -145,7 +145,7 @@ function MainPage() {
     };
 
     this.showFullInfo = (item) =>{
-        let self = this;
+        //let self = this;
         $('main').html('');
         let fullProduct = document.createElement('div');
         let fullProductInfo = document.createElement('div');
@@ -325,20 +325,20 @@ function MainPage() {
         $(fullAdditionalInfo).append(commentsDiv);
         $(fullAdditionalInfo).append(elseInfo);
 
-        $(fullPlus).on('click', function(e) {
+        $(fullPlus).on('click', (e) =>{
             e.stopImmediatePropagation();
-            self.plusQuantity (fullQuantity);
+            this.plusQuantity (fullQuantity);
         });
         $(fullMinus).on('click', (e)=>{
             e.stopImmediatePropagation();
-            self.minusQuantity(fullQuantity);
+            this.minusQuantity(fullQuantity);
         });
         $(commentsLink).on('click', (e) => {
             $(commentsLink).addClass('selectedLink');
             $(elseInfoLink).removeClass('selectedLink');
             e.preventDefault();
             let articul = item.articul;
-            self.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
+            this.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
         });
 
 
@@ -494,7 +494,7 @@ function MainPage() {
 
 
     this.showWindow = (item) => {
-        let self = this;
+        //let self = this;
         $('#fastQuantity').attr('value', 0);
         $("#fastPhoto").attr('src', item.images[0]);
         $("#fastTitle").html(item.title);
@@ -516,14 +516,14 @@ function MainPage() {
         console.log(item);
         this.value = 0;
         $("#fastQuantity").prop("disabled", true);
-        $('#fastPlus').on('click', function(e) {
+        $('#fastPlus').on('click', (e)=> {
             e.stopImmediatePropagation();
-            self.plusFastQuantity ();
+            this.plusFastQuantity ();
 
         });
         $('#fastMinus').on('click', (e)=>{
             e.stopImmediatePropagation();
-            self.minusFastQuantity();
+            this.minusFastQuantity();
         });
 
     };

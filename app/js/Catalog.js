@@ -315,7 +315,7 @@ function Catalog() {
     };
 
     this.showFullInfo = (item) =>{
-        let self = this;
+        //let self = this;
         $('main').html('');
         let fullProduct = document.createElement('div');
         let fullProductInfo = document.createElement('div');

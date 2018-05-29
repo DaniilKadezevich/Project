@@ -1,6 +1,6 @@
 'use strict';
 let result;
-let topInfo = $('#topInfo');
+let mainMenu = $('#main-menu');
 let createElement = (element, className, parent)=> {
     $(element).addClass(className);
     $(parent).append(element);
@@ -9,11 +9,11 @@ let createExitBtn = (user)=>{
     let exitBtn = document.createElement('button');
     let exitIcon = document.createElement('i');
     createElement(exitIcon, ['fa', 'fa-sign-out-alt'], exitBtn);
-    createElement(exitBtn, '', topInfo);
+    createElement(exitBtn, '', mainMenu);
     $(exitBtn).on('click', exitUser);
 };
 let exitUser = (user)=>{
-    topInfo[0].removeChild(topInfo[0].lastChild);
+    mainMenu[0].removeChild(mainMenu[0].lastChild);
     createEnterBtn();
     localStorage.removeItem('checkUser');
 };
@@ -21,7 +21,7 @@ let createEnterBtn = ()=>{
     let enterBtn = document.createElement('button');
     let enterIcon = document.createElement('i');
     createElement(enterIcon, ['fa', 'fa-sign-in-alt'], enterBtn);
-    createElement(enterBtn,'', topInfo);
+    createElement(enterBtn,'', mainMenu);
     $(enterBtn).on('click', enterUser);
 };
 let enterUser = ()=>{
@@ -65,7 +65,7 @@ let createEnterMsg = (enterLogin, enterPassword, errorMsg)=>{
         $(welcome).addClass('welcome');
         $(welcome).html(`Добро пожаловать, ${users[0].name}`);
         setTimeout(()=>$(welcome).hide('fade'), 2000);
-        topInfo[0].removeChild(topInfo[0].lastChild);
+        mainMenu[0].removeChild(mainMenu[0].lastChild);
         createExitBtn();
         let checkUserJson = 'user enter';
         localStorage['checkUser'] = checkUserJson;
@@ -162,7 +162,7 @@ let registerUser = (formRegistration, nameFormRegister, emailFormRegister, passw
             $(welcome).html(`Добро пожаловать, ${name}`);
             setTimeout(()=>$(welcome).hide('fade'), 3000);
             localWelcome(welcome);
-            topInfo[0].removeChild(topInfo[0].lastChild);
+            mainMenu[0].removeChild(mainMenu[0].lastChild);
             createExitBtn();
             let checkUserJson = 'user enter';
             localStorage['checkUser'] = checkUserJson;
@@ -235,13 +235,13 @@ let createStickBlock = () =>{
 $(document).ready(function() {
     if(!localStorage.getItem('welcome')) {
         createStickBlock();
-        topInfo[0].removeChild(topInfo[0].lastChild);
+        mainMenu[0].removeChild(mainMenu[0].lastChild);
         createEnterBtn();
     } else if(localStorage.getItem('checkUser')){
-        topInfo[0].removeChild(topInfo[0].lastChild);
+        mainMenu[0].removeChild(mainMenu[0].lastChild);
         createExitBtn();
     } else{
-        topInfo[0].removeChild(topInfo[0].lastChild);
+        mainMenu[0].removeChild(mainMenu[0].lastChild);
         createEnterBtn();
     }
 });
