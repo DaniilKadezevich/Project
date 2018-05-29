@@ -253,7 +253,7 @@ function Catalog() {
         itemImgBlock.appendTo(parent);
     };
     this.showWindow = (item) => {
-        let self = this;
+        //let self = this;
         $('#fastQuantity').attr('value', 0);
         $("#fastPhoto").attr('src', item.images[0]);
         $("#fastTitle").html(item.title);
@@ -274,14 +274,14 @@ function Catalog() {
         this.availability = item.characteristics.availability;
         this.value = 0;
         $("#fastQuantity").prop("disabled", true);
-        $('#fastPlus').on('click', function(e) {
+        $('#fastPlus').on('click', (e)=> {
             e.stopImmediatePropagation();
-            self.plusFastQuantity ();
+            this.plusFastQuantity ();
 
         });
         $('#fastMinus').on('click', (e)=>{
             e.stopImmediatePropagation();
-            self.minusFastQuantity();
+            this.minusFastQuantity();
         });
 
     };
@@ -330,8 +330,6 @@ function Catalog() {
         let photoDiv = document.createElement('div');
         let sliderFor = document.createElement('div');
         let sliderNav = document.createElement('div');
-        $(sliderFor).addClass('slider-for');
-        $(sliderNav).addClass('slider-nav');
 
 
         item.images.forEach((path)=>{
@@ -344,21 +342,23 @@ function Catalog() {
             $(sliderNav).append(fullSmallPhoto);
         });
         $(sliderFor).slick({
-            autoplay: false,
             dots: true,
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: true,
-            fade: true,
-            asNavFor: '.slider-nav'
+            fade: false,
+            asNavFor: sliderNav,
+
         });
         $(sliderNav).slick({
-            slidesToShow: 5,
+            slidesToShow: 3,
             slidesToScroll: 1,
-            asNavFor: '.slider-for',
+            asNavFor: sliderFor,
             dots: false,
             centerMode: true,
-            focusOnSelect: true
+            focusOnSelect: true,
+            centerPadding: 0,
+
         });
         $(photoDiv).append(sliderFor);
         $(photoDiv).append(sliderNav);
@@ -517,20 +517,20 @@ function Catalog() {
         $(fullAdditionalInfo).append(commentsDiv);
         $(fullAdditionalInfo).append(elseInfo);
 
-        $(fullPlus).on('click', function(e) {
+        $(fullPlus).on('click', (e)=> {
             e.stopImmediatePropagation();
-            self.plusQuantity (fullQuantity);
+            this.plusQuantity (fullQuantity);
         });
         $(fullMinus).on('click', (e)=>{
             e.stopImmediatePropagation();
-            self.minusQuantity(fullQuantity);
+            this.minusQuantity(fullQuantity);
         });
         $(commentsLink).on('click', (e) => {
             $(commentsLink).addClass('selectedLink');
             $(elseInfoLink).removeClass('selectedLink');
             e.preventDefault();
             let articul = item.articul;
-            self.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
+            this.showComments(articul, inputComments, allComments, commentsDiv, elseInfo);
         });
 
 
