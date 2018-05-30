@@ -390,7 +390,7 @@ function Catalog() {
         let fullPrice = document.createElement('div');
         $(fullPrice).addClass('fullPrice');
         $(fullInfo).append(fullPrice);
-        if(topInfo[0].lastChild.value==="Выйти") {
+        if($(mainMenu[0].lastChild).hasClass('innerBtn')) {
             let price = item.price*0.9;
             $(fullPrice).html(`${price} грн.`);
         } else {

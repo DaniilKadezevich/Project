@@ -1,12 +1,13 @@
 'use strict';
 let result;
-let mainMenu = $('#main-menu');
+let mainMenu = $('.line-bot');
 let createElement = (element, className, parent)=> {
     $(element).addClass(className);
     $(parent).append(element);
 };
 let createExitBtn = (user)=>{
     let exitBtn = document.createElement('button');
+    $(exitBtn).addClass('innerBtn');
     let exitIcon = document.createElement('i');
     createElement(exitIcon, ['fa', 'fa-sign-out-alt'], exitBtn);
     createElement(exitBtn, '', mainMenu);
@@ -229,8 +230,16 @@ let createStickBlock = () =>{
         showRegisterForm(stickBlock);
     });
     $(stickCloseBtn).on('click',()=>{
-        $(stickBlock).animate({right: '-350px'}, 'slow');
-    })
+        $(stickCloseBtn).toggleClass('toggleRotate');
+        if($(stickCloseBtn).hasClass('toggleRotate')){
+            $(stickBlock).animate({right: '-265px'}, 'slow');
+            //$(stickCloseBtn).removeClass('rotate');
+        } else{
+            $(stickBlock).animate({right: '0px'}, 'slow');
+            //$(stickCloseBtn).addClass('rotate');
+        }
+        })
+
 };
 $(document).ready(function() {
     if(!localStorage.getItem('welcome')) {
