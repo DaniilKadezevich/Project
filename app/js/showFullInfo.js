@@ -15,16 +15,21 @@ let showFullInfo = (item) =>{
   let sliderFor = document.createElement('div');
   let sliderNav = document.createElement('div');
 
+  if(item.images.length>1){
+    item.images.forEach((path)=>{
+      let fullPhoto = document.createElement('img');
+      $(fullPhoto).attr('src', path);
+      $(sliderFor).append(fullPhoto);
 
-  item.images.forEach((path)=>{
+      let fullSmallPhoto = document.createElement('img');
+      $(fullSmallPhoto).attr('src', path);
+      $(sliderNav).append(fullSmallPhoto);
+    });
+  } else{
     let fullPhoto = document.createElement('img');
-    $(fullPhoto).attr('src', path);
+    $(fullPhoto).attr('src', item.images[0]);
     $(sliderFor).append(fullPhoto);
-
-    let fullSmallPhoto = document.createElement('img');
-    $(fullSmallPhoto).attr('src', path);
-    $(sliderNav).append(fullSmallPhoto);
-  });
+  }
   $(sliderFor).slick({
     dots: true,
     slidesToShow: 1,
@@ -32,17 +37,15 @@ let showFullInfo = (item) =>{
     arrows: true,
     fade: false,
     asNavFor: sliderNav,
-
   });
   $(sliderNav).slick({
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     asNavFor: sliderFor,
     dots: false,
     centerMode: true,
     focusOnSelect: true,
     centerPadding: 0,
-
   });
   $(photoDiv).append(sliderFor);
   $(photoDiv).append(sliderNav);
@@ -139,8 +142,8 @@ let showFullInfo = (item) =>{
   });
   $(colorFullChange).on('change', ()=>{
     item.colors.forEach((color, ind)=>{
-      console.log(colorFullChange.value);
       if(color===colorFullChange.value) {
+        console.log ($('.slick-track'));
         $(".slick-current").attr('src', item.images[ind]);
       }
     });
